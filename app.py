@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 LLAVA_API_URL = os.getenv(
     "LLAVA_API_URL",
-    "http://localhost:8000/api/v1/analyze/imagen_llava",
+    "http://172.31.99.146/api/v1/analyze/imagen_llava",
 )
 
 
