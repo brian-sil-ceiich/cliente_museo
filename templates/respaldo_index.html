@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Cliente LLaVA
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            background: #f4f6f8;
+
+            color: #222;
+        }
+
+        .container {
+            width: min(
+                800px,
+                calc(100% - 40px)
+            );
+
+            margin: 50px auto;
+        }
+
+        .card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: bold;
+        }
+
+        input[type="file"],
+        textarea {
+            width: 100%;
+        }
+
+        textarea {
+            min-height: 130px;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+            resize: vertical;
+
+            font-family: inherit;
+        }
+
+        button {
+            background: #2563eb;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            padding: 12px 20px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .error {
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            border-radius: 8px;
+        }
+
+        .result {
+            margin-top: 25px;
+        }
+
+        .analysis {
+            padding: 20px;
+
+            background: #eff6ff;
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background: #1e1e1e;
+
+            color: #d4d4d4;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            overflow-x: auto;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>
+            Análisis con LLaVA
+        </h1>
+
+        <p>
+            Esta aplicación consume tu API
+            de análisis de imágenes.
+        </p>
+
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <div class="form-group">
+
+                <label>
+                    Imagen
+                </label>
+
+                <input
+                    type="file"
+                    name="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Prompt
+                </label>
+
+                <textarea
+                    name="prompt"
+                    placeholder="Escribe qué quieres analizar..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button type="submit">
+
+                Analizar imagen
+
+            </button>
+
+        </form>
+
+
+        {% if error %}
+
+            <div class="error">
+
+                {{ error }}
+
+            </div>
+
+        {% endif %}
+
+
+        {% if result %}
+
+            <div class="result">
+
+                <h2>
+                    Resultado
+                </h2>
+
+
+                <div class="analysis">
+
+                    {{ result.analysis }}
+
+                </div>
+
+
+                <p>
+                    <strong>
+                        Tiempo LLaVA:
+                    </strong>
+
+                    {{ result.ollama_time }}
+                    segundos
+                </p>
+
+
+                <p>
+                    <strong>
+                        Tiempo total:
+                    </strong>
+
+                    {{ total_time }}
+                    segundos
+                </p>
+
+
+                <h3>
+                    JSON recibido
+                </h3>
+
+                <pre>{{ result | tojson(indent=2) }}</pre>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
