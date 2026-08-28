@@ -47,10 +47,10 @@ const imagePreview =
     );
 
 //BAMS Descomentar en caso de que quieran enviar prompt
-// const promptInput =
-//     document.getElementById(
-//         "prompt"
-//     );
+const promptInput =
+    document.getElementById(
+        "prompt"
+    );
 
 
 const analyzeButton =
@@ -105,6 +105,18 @@ const clientTime =
 //     document.getElementById(
 //         "json-result"
 //     );
+
+
+const gobackContainer =
+    document.getElementById(
+        "goback-container"
+    );
+
+
+const gobackButton =
+    document.getElementById(
+        "goback-button"
+    );
 
 
 // ==========================================
@@ -304,6 +316,12 @@ function showLoading() {
     // Mostrar loading
     loading.hidden = false;
 
+    // Ocultar contenedor para el inicio
+    gobackContainer.hidden = true;
+
+    // Ocultar el botón de Inicio
+    gobackButton.hidden = true;
+
 }
 
 
@@ -356,6 +374,20 @@ function showResult(data) {
 
     resultContainer.hidden =
         false;
+
+    gobackContainer.hidden =
+        false;
+
+    // Mostrar el botón
+    gobackButton.hidden = false;
+}
+
+// ==========================================
+// ENVIAR A FLASK
+// ==========================================
+
+async function index() {
+    window.location.href = "http://127.0.0.1:5000";
 }
 
 
@@ -375,10 +407,9 @@ async function analyzeImage() {
         return;
     }
 
-    // const prompt =
-    //     promptInput.value.trim();
+    const prompt = promptInput.value.trim();
         
-    const prompt = "Hola";
+    // const prompt = "Hola";
 
     if (!prompt) {
         showError(
@@ -429,6 +460,7 @@ async function analyzeImage() {
     } catch (error) {
         carousel.hidden = false;
         analyzeButton.hidden = false;
+        gobackButton.hidden = false;
         showError(
             error.message
         );
@@ -446,6 +478,16 @@ async function analyzeImage() {
 analyzeButton.addEventListener(
     "click",
     analyzeImage
+);
+
+
+// ==========================================
+// BOTÓN GO BACK
+// ==========================================
+
+gobackButton.addEventListener(
+    "click",
+    index
 );
 
 

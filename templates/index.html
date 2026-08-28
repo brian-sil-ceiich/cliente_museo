@@ -181,7 +181,7 @@
                  PROMPT
                  ================================== -->
 
-            <!-- <div class="form-group">
+            <div class="form-group">
 
                 <label for="prompt">
 
@@ -193,9 +193,9 @@
                 <textarea
                     id="prompt"
                     placeholder="Escribe qué quieres analizar..."
-                >Determina la edad aproximada y la emoción de la persona en la imagen.</textarea>
+                >Analiza la imagen y determina las edad y la emoción de la persona visible: 1. EDAD - Estima el rango de edad en años que aparenta tener la persona, quiero que me lo digas en años. 2. EMOCION - Determina la emoción que parece expresar la persona mediante su expresión facial. - No respondas neutral. REGLAS: - Responde en español. - No agregues explicaciones. - No utilices Markdown. - Responde únicamente con la edad y la emoción.</textarea>
 
-            </div> -->
+            </div>
 
 
             <button
@@ -227,6 +227,27 @@
             <span>
                 Analizando imagen...
             </span>
+
+        </div>
+
+        <!-- ======================================
+             Go back button
+             ====================================== -->
+
+        <div
+            id="goback-container"
+            class="center-container"
+            hidden
+        >
+
+            <button
+                type="button"
+                id="goback-button"
+            >
+
+                Volver al Inicio
+
+            </button>
 
         </div>
 
