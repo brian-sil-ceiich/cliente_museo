@@ -134,7 +134,6 @@ function createCarousel() {
 
     carouselTrack.innerHTML = "";
 
-
     for (
         let i = 1;
         i <= TOTAL_IMAGES;
@@ -142,53 +141,34 @@ function createCarousel() {
     ) {
 
         const image =
-            document.createElement(
-                "img"
-            );
-
+            document.createElement("img");
 
         const number =
-            String(i).padStart(
-                2,
-                "0"
-            );
-
+            String(i).padStart(2, "0");
 
         image.src =
             `${IMAGE_FOLDER}imagen_${number}.png`;
 
-
         image.alt =
             `Fotografía ${i}`;
-
 
         image.className =
             "carousel-image";
 
-
         image.dataset.index =
             i;
-
 
         image.addEventListener(
             "click",
             () => {
-
-                selectImage(
-                    image
-                );
-
+                selectImage(image);
             }
         );
 
-
-        carouselTrack.appendChild(
-            image
-        );
-
+        carouselTrack.appendChild(image);
     }
-
 }
+
 
 
 // ==========================================
@@ -231,35 +211,47 @@ function selectImage(image) {
 
 
 // ==========================================
-// BOTÓN ANTERIOR
+// BOTONES ANTERIOR, SIGUIENTE
 // ==========================================
+
+let currentPage = 0;
+
+const IMAGES_PER_PAGE = 7;
+
+const IMAGE_WIDTH = 120;
+const IMAGE_GAP = 14;
+
+const PAGE_WIDTH =
+    (IMAGE_WIDTH + IMAGE_GAP) *
+    IMAGES_PER_PAGE;
+
 
 prevButton.addEventListener(
     "click",
     () => {
 
-        carouselTrack.scrollBy({
-            left: -500,
-            behavior: "smooth"
-        });
+        if (currentPage > 0) {
 
+            currentPage--;
+
+            carouselTrack.style.transform =
+                `translateX(-${currentPage * PAGE_WIDTH}px)`;
+        }
     }
 );
 
-
-// ==========================================
-// BOTÓN SIGUIENTE
-// ==========================================
 
 nextButton.addEventListener(
     "click",
     () => {
 
-        carouselTrack.scrollBy({
-            left: 500,
-            behavior: "smooth"
-        });
+        if (currentPage < 2) {
 
+            currentPage++;
+
+            carouselTrack.style.transform =
+                `translateX(-${currentPage * PAGE_WIDTH}px)`;
+        }
     }
 );
 

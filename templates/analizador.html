@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Museo UNAM Hoy | Analizador de imágenes</title>
+
+    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- ==========================================
+     FONDO ANIMADO
+     ========================================== -->
+
+    <div class="animated-background">
+
+        <div class="background-gradient"></div>
+
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+
+        <div class="grid"></div>
+
+        <!-- Elementos decorativos.
+             Más adelante podemos sustituirlos
+             por tus imágenes e iconos reales. -->
+
+        <div class="floating-icon icon-1">✦</div>
+        <div class="floating-icon icon-2">◈</div>
+        <div class="floating-icon icon-3">✧</div>
+        <div class="floating-icon icon-4">●</div>
+        <div class="floating-icon icon-5">✦</div>
+
+      
+        <div class="floating-shape shape-1">
+            <div class="pixel-dust"></div>
+        </div>
+
+        <div class="floating-shape shape-2">
+            <div class="pixel-dust"></div>
+        </div>
+
+        <div class="floating-shape shape-3">
+            <div class="pixel-dust"></div>
+        </div>
+
+        <div class="floating-shape shape-4">
+            <div class="pixel-dust"></div>
+        </div>
+
+        <div class="floating-shape shape-5">
+            <div class="pixel-dust"></div>
+        </div>
+    </div>
+
+
+
+<!-- ==========================================
+     HEADER
+     ========================================== -->
+
+   <header class="header">
+
+    <div class="header-container">
+
+        <div class="header-brand">
+
+            <img
+                src="{{ url_for('static', filename='images/logos/logo_unam.png') }}"
+                class="header-logo-unam"
+                alt="UNAM"
+            >
+            <span class="header-separator"></span>
+
+            <img
+                src="{{ url_for('static', filename='images/logos/logo_ceiich.svg') }}"
+                class="header-logo-museo"
+                alt="CEIICH"
+            >
+
+            <span class="header-separator"></span>
+
+            <img
+                src="{{ url_for('static', filename='images/logos/logo_museo-iisue.png') }}"
+                class="header-logo-museo"
+                alt="Museo UNAM Hoy"
+            >
+
+        </div>
+
+
+        <nav class="header-actions">
+            <a href="/" class="header-link active" >
+                <span class="enter-button-icon">
+                    🏠
+                </span>
+                Inicio
+            </a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==========================================
+     CONTENIDO
+     ========================================== -->
+
+<main class="container">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-badge">
+
+            <span class="status-dot"></span>
+
+           DIMI IA
+
+        </div>
+
+
+        <h1>
+
+            Descubre lo que hay
+            <span>en una imagen.</span>
+
+        </h1>
+
+
+        <p class="subtitle">
+
+            Selecciona una fotografía y permite que nuestra
+            inteligencia artificial analice su contenido,
+            edad aparente y expresión emocional.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         ANALIZADOR
+         ========================================== -->
+
+    <section
+        class="card analysis-card"
+        id="analysis-section"
+    >
+
+
+        <div class="section-heading">
+
+            <div>
+
+
+                <h2>
+                    Elige una fotografía
+                </h2>
+
+                <p>
+                    Explora las fotografías disponibles
+                    y selecciona una para comenzar.
+                </p>
+
+            </div>
+
+
+            <div class="ai-badge">
+
+                <span>AI</span>
+
+                LLaVA
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================
+             CARRUSEL
+             ================================== -->
+
+        <div class="carousel">
+
+            <button
+                type="button"
+                class="carousel-button"
+                id="prev-button"
+                aria-label="Fotografías anteriores"
+            >
+                ❮
+            </button>
+
+
+            <div class="carousel-track-container">
+
+                <div
+                    class="carousel-track"
+                    id="carousel-track"
+                >
+
+                    <!--
+                        Las 20 imágenes se generan
+                        dinámicamente desde app.js.
+                    -->
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="carousel-button"
+                id="next-button"
+                aria-label="Fotografías siguientes"
+            >
+                ❯
+            </button>
+
+        </div>
+
+
+
+        <!-- ==================================
+             VISTA PREVIA
+             ================================== -->
+
+        <div
+            class="preview-container"
+            id="preview-container"
+            hidden
+        >
+
+            <div class="preview-label">
+                FOTOGRAFÍA SELECCIONADA
+            </div>
+
+            <div class="preview-frame">
+
+                <img
+                    id="image-preview"
+                    alt="Imagen seleccionada"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================
+             PROMPT
+             ================================== -->
+
+        <div class="prompt-section">
+
+            <div class="prompt-header">
+
+                <label for="prompt">
+                    ¿Qué quieres analizar?
+                </label>
+
+                <span>
+                    Prompt
+                </span>
+
+            </div>
+
+
+            <textarea
+                id="prompt"
+                placeholder="Escribe qué quieres analizar..."
+            >Analiza la imagen y determina las edad y la emoción de la persona visible: 1. EDAD - Estima el rango de edad en años que aparenta tener la persona, quiero que me lo digas en años. 2. EMOCION - Determina la emoción que parece expresar la persona mediante su expresión facial. - No respondas neutral. REGLAS: - Responde en español. - No agregues explicaciones. - No utilices Markdown. - Responde únicamente con la edad y la emoción.</textarea>
+
+        </div>
+
+
+
+        <button
+            type="button"
+            id="analyze-button"
+            class="analyze-button"
+        >
+
+            <span>
+                Analizar fotografía
+            </span>
+
+            <span class="button-arrow">
+                →
+            </span>
+
+        </button>
+
+
+    </section>
+
+
+
+    <!-- ======================================
+         LOADING
+         ====================================== -->
+
+    <div
+        id="loading"
+        class="loading"
+        hidden
+    >
+
+        <div class="loading-spinner"></div>
+
+        <div>
+
+            <strong>
+                Analizando fotografía
+            </strong>
+
+            <span>
+                La inteligencia artificial está procesando la imagen...
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ======================================
+         VOLVER
+         ====================================== -->
+
+    <div
+        id="goback-container"
+        class="center-container"
+        hidden
+    >
+
+        <button
+            type="button"
+            id="goback-button"
+        >
+
+            ← Volver al inicio
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ======================================
+         ERROR
+         ====================================== -->
+
+    <div
+        id="error"
+        class="error"
+        hidden
+    ></div>
+
+
+
+    <!-- ======================================
+         RESULTADO
+         ====================================== -->
+
+    <section
+        class="card result-card"
+        id="result-container"
+        hidden
+    >
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    PASO 02
+                </span>
+
+                <h2>
+                    Resultado del análisis
+                </h2>
+
+            </div>
+
+            <div class="result-ai">
+                ✓ ANALIZADO
+            </div>
+
+        </div>
+
+
+        <div
+            id="summary"
+            class="result-analysis"
+        ></div>
+
+
+        <div class="result-metadata">
+
+            <div class="metadata-item">
+
+                <span>
+                    TIEMPO LLaVA
+                </span>
+
+                <strong>
+                    <span id="ollama-time"></span>
+                    s
+                </strong>
+
+            </div>
+
+
+            <div class="metadata-item">
+
+                <span>
+                    TIEMPO TOTAL
+                </span>
+
+                <strong>
+                    <span id="client-time"></span>
+                    s
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+                UNAM
+            </div>
+
+            <span>
+                MUSEO UNAM HOY
+            </span>
+
+        </div>
+
+
+        <span class="footer-copy">
+            AI Analyzer © 2026
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<script
+    src="{{ url_for('static', filename='app.js') }}"
+></script>
+
+</body>
+
+</html>

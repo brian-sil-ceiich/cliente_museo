@@ -34,6 +34,9 @@ def index():
         "index.html"
     )
 
+@app.route("/analizador")
+def analizador():
+    return render_template("analizador.html")
 
 @app.post("/analyze")
 def analyze():

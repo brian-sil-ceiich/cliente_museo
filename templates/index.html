@@ -1,382 +1,185 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Museo UNAM Hoy | Analizador de imágenes</title>
 
-    <title>
-        Analizador de imágenes
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='style.css') }}"
-    >
+    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
-
 <body>
 
+<!-- ==========================================
+     FONDO ANIMADO
+     ========================================== -->
 
-    <!-- ==========================================
-         HEADER
-         ========================================== -->
+    <div class="animated-background">
 
-    <header class="header">
+        <div class="background-gradient"></div>
 
-        <div class="header-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
 
-            <a
-                href="/"
-                class="header-brand"
-            >
+        <div class="grid"></div>
 
-                <div class="header-brand-icon">
-                    UNAM
-                </div>
+        <!-- Elementos decorativos.
+             Más adelante podemos sustituirlos
+             por tus imágenes e iconos reales. -->
 
-                <span>
-                    MUSEO UNAM HOY
-                </span>
+        <div class="floating-icon icon-1">✦</div>
+        <div class="floating-icon icon-2">◈</div>
+        <div class="floating-icon icon-3">✧</div>
+        <div class="floating-icon icon-4">●</div>
+        <div class="floating-icon icon-5">✦</div>
 
-            </a>
-
-
-            <div class="header-actions">
-
-                <a
-                    href="#"
-                    class="header-icon"
-                    title="Inicio"
-                >
-                    🏠
-                </a>
-
-                <a
-                    href="#"
-                    class="header-icon"
-                    title="LLaVA"
-                >
-                    👁️
-                </a>
-
-            </div>
-
+      
+        <div class="floating-shape shape-1">
+            <div class="pixel-dust"></div>
         </div>
 
-    </header>
+        <div class="floating-shape shape-2">
+            <div class="pixel-dust"></div>
+        </div>
+
+        <div class="floating-shape shape-3">
+            <div class="pixel-dust"></div>
+        </div>
+
+        <div class="floating-shape shape-4">
+            <div class="pixel-dust"></div>
+        </div>
+
+        <div class="floating-shape shape-5">
+            <div class="pixel-dust"></div>
+        </div>
+    </div>
 
 
 
-    <!-- ==========================================
-         CONTENIDO
-         ========================================== -->
+<!-- ==========================================
+     HEADER
+     ========================================== -->
 
-    <main class="container">
+   <header class="header">
 
+    <div class="header-container">
+         <div class="header-brand">
+            <img
+                src="{{ url_for('static', filename='images/logos/logo_unam.png') }}"
+                class="header-logo-unam"
+                alt="UNAM"
+            >
+            <span class="header-separator"></span>
+
+            <img
+                src="{{ url_for('static', filename='images/logos/logo_ceiich.svg') }}"
+                class="header-logo-museo"
+                alt="CEIICH"
+            >
+
+            <span class="header-separator"></span>
+
+            <img
+                src="{{ url_for('static', filename='images/logos/logo_museo-iisue.png') }}"
+                class="header-logo-museo"
+                alt="Museo UNAM Hoy"
+            >
+        </div> 
+
+        <nav class="header-actions">
+
+            <a href="/" class="header-link active" >
+                <span class="enter-button-icon">
+                    🏠
+                </span>
+                Inicio
+            </a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==========================================
+     CONTENIDO
+     ========================================== -->
+
+<main class="container">
+
+    <section class="hero">
+        <div class="hero-badge">
+            <span class="status-dot"></span>
+             DIMI IA
+        </div>
 
         <h1>
-            Analizador de imágenes
+            Descubre lo que hay
+            <span>en una imagen.</span>
         </h1>
+    </section>
 
+    <section class="video-container">
+        <iframe
+            class="home-video"
+            src="https://www.youtube.com/embed/vT40NJm94zg?si=LxGfos8nonDautkB"
+            title="Video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+    </section>
 
-        <p class="subtitle">
+    <div class="home-action">
+        <a href="/analizador" class="enter-button">
+            <span class="enter-button-text">
+                ENTRAR
+            </span>
+        </a>
+    </div>
 
-            Selecciona una fotografía para analizarla
-            utilizando LLaVA.
+</main>
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
 
-        </p>
+<footer class="footer">
 
+    <div class="footer-container">
 
-        <section
-            class="card"
-            id="analysis-section"
-        >
+        <div class="footer-brand">
 
-
-            <div class="form-group">
-
-                <label>
-                    Selecciona una fotografía
-                </label>
-
-
-                <!-- ==================================
-                     CARRUSEL
-                     ================================== -->
-
-                <div
-                    class="carousel"
-                    id="carousel"
-                >
-
-                    <button
-                        type="button"
-                        class="carousel-button"
-                        id="prev-button"
-                    >
-                        ❮
-                    </button>
-
-
-                    <div
-                        class="carousel-track-container"
-                    >
-
-                        <div
-                            class="carousel-track"
-                            id="carousel-track"
-                        >
-
-                            <!--
-                                Las 20 imágenes
-                                se generan desde app.js
-                            -->
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="carousel-button"
-                        id="next-button"
-                    >
-                        ❯
-                    </button>
-
-                </div>
-
-
+            <div class="footer-logo">
+                UNAM
             </div>
-
-
-            <!-- ==================================
-                 VISTA PREVIA
-                 ================================== -->
-
-            <div
-                class="preview-container"
-                id="preview-container"
-                hidden
-            >
-
-                <img
-                    id="image-preview"
-                    alt="Imagen seleccionada"
-                >
-
-            </div>
-
-
-            <!-- ==================================
-                 PROMPT
-                 ================================== -->
-
-            <div class="form-group">
-
-                <label for="prompt">
-
-                    Prompt
-
-                </label>
-
-
-                <textarea
-                    id="prompt"
-                    placeholder="Escribe qué quieres analizar..."
-                >Analiza la imagen y determina las edad y la emoción de la persona visible: 1. EDAD - Estima el rango de edad en años que aparenta tener la persona, quiero que me lo digas en años. 2. EMOCION - Determina la emoción que parece expresar la persona mediante su expresión facial. - No respondas neutral. REGLAS: - Responde en español. - No agregues explicaciones. - No utilices Markdown. - Responde únicamente con la edad y la emoción.</textarea>
-
-            </div>
-
-
-            <button
-                type="button"
-                id="analyze-button"
-            >
-
-                Analizar fotografía
-
-            </button>
-
-
-        </section>
-
-
-
-        <!-- ======================================
-             LOADING
-             ====================================== -->
-
-        <div
-            id="loading"
-            class="loading"
-            hidden
-        >
-
-            <div class="loading-spinner"></div>
 
             <span>
-                Analizando imagen...
+                MUSEO UNAM HOY
             </span>
 
         </div>
 
-        <!-- ======================================
-             Go back button
-             ====================================== -->
 
-        <div
-            id="goback-container"
-            class="center-container"
-            hidden
-        >
+        <span class="footer-copy">
+            AI Analyzer © 2026
+        </span>
 
-            <button
-                type="button"
-                id="goback-button"
-            >
+    </div>
 
-                Volver al Inicio
-
-            </button>
-
-        </div>
+</footer>
 
 
 
-        <!-- ======================================
-             ERROR
-             ====================================== -->
-
-        <div
-            id="error"
-            class="error"
-            hidden
-        ></div>
-
-
-
-        <!-- ======================================
-             RESULTADO
-             ====================================== -->
-
-        <section
-            class="card result-card"
-            id="result-container"
-            hidden
-        >
-
-            <h2>
-                Resultado
-            </h2>
-
-
-            <div
-                id="summary"
-                class="result-analysis"
-            ></div>
-
-
-            <div class="result-metadata">
-
-                <div>
-
-                    <strong>
-                        Tiempo LLaVA:
-                    </strong>
-
-                    <span id="ollama-time"></span>
-
-                    segundos
-
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        Tiempo total:
-                    </strong>
-
-                    <span id="client-time"></span>
-
-                    segundos
-
-                </div>
-
-            </div>
-
-
-            <!-- <details>
-
-                <summary>
-                    Ver JSON
-                </summary>
-
-
-                <pre id="json-result"></pre>
-
-            </details> -->
-
-
-        </section>
-
-
-    </main>
-
-
-
-    <!-- ==========================================
-         FOOTER
-         ========================================== -->
-
-    <footer class="footer">
-
-        <div class="footer-container">
-
-            <p class="footer-text">
-                AI Analyzer © 2026
-            </p>
-
-
-            <div class="footer-links">
-
-                <a
-                    href="#"
-                    class="footer-link"
-                >
-                    Inicio
-                </a>
-
-
-                <a
-                    href="#"
-                    class="footer-link"
-                >
-                    Acerca de
-                </a>
-
-            </div>
-
-        </div>
-
-    </footer>
-
-
-
-    <script
-        src="{{ url_for('static', filename='app.js') }}"
-    ></script>
-
+<script
+    src="{{ url_for('static', filename='app.js') }}"
+></script>
 
 </body>
 

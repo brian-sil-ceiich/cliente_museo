@@ -2,38 +2,661 @@
    RESET
    ========================================== */
 
-[hidden] {
-    display: none !important;
-}
-
 * {
     box-sizing: border-box;
 }
-
 
 html {
     min-height: 100%;
 }
 
-
 body {
     margin: 0;
-
     min-height: 100vh;
 
     display: flex;
     flex-direction: column;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
-    background: #f4f6f8;
+    color: #172033;
 
-    color: #222;
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc 0%,
+            #eef4fb 48%,
+            #fffaf0 100%
+        );
+
+    position: relative;
+    overflow-x: hidden;
 }
 
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 61, 165, 0.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 61, 165, 0.045) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        32px 32px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* ==========================================
+   FONDO DECORATIVO
+   ========================================== */
+
+.animated-background {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* ==========================================
+   MANCHAS ABSTRACTAS
+   ========================================== */
+
+.floating-shape {
+    position: absolute;
+
+    filter: blur(18px);
+
+    opacity: 0.65;
+
+    mix-blend-mode: multiply;
+
+    pointer-events: none;
+}
+
+
+/* ==========================================
+   MANCHA AZUL
+   ========================================== */
+
+.shape-1 {
+    width: 520px;
+    height: 400px;
+
+    top: -150px;
+    left: -140px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 61, 165, 0.60),
+            rgba(37, 99, 235, 0.25)
+        );
+
+    border-radius:
+        70% 30% 58% 42%
+        /
+        45% 65% 35% 55%;
+
+    transform: rotate(-18deg);
+
+    animation:
+        abstractFloat1 17s ease-in-out infinite;
+}
+
+
+/* ==========================================
+   MANCHA MORADA
+   ========================================== */
+
+.shape-2 {
+    width: 500px;
+    height: 580px;
+
+    top: 12%;
+    right: -190px;
+
+    background:
+        linear-gradient(
+            160deg,
+            rgba(124, 58, 237, 0.55),
+            rgba(168, 85, 247, 0.20)
+        );
+
+    border-radius:
+        38% 62% 30% 70%
+        /
+        62% 38% 65% 35%;
+
+    transform: rotate(23deg);
+
+    animation:
+        abstractFloat2 21s ease-in-out infinite;
+}
+
+
+/* ==========================================
+   MANCHA TURQUESA
+   ========================================== */
+
+.shape-3 {
+    width: 460px;
+    height: 350px;
+
+    bottom: -120px;
+    left: 12%;
+
+    background:
+        linear-gradient(
+            130deg,
+            rgba(6, 182, 212, 0.52),
+            rgba(14, 165, 233, 0.18)
+        );
+
+    border-radius:
+        35% 65% 72% 28%
+        /
+        58% 38% 62% 42%;
+
+    transform: rotate(-15deg);
+
+    animation:
+        abstractFloat3 19s ease-in-out infinite;
+}
+
+
+/* ==========================================
+   MANCHA DORADA
+   ========================================== */
+
+.shape-4 {
+    width: 420px;
+    height: 300px;
+
+    top: 43%;
+    left: 38%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(214, 165, 45, 0.52),
+            rgba(245, 158, 11, 0.16)
+        );
+
+    border-radius:
+        72% 28% 45% 55%
+        /
+        40% 68% 32% 60%;
+
+    transform: rotate(17deg);
+
+    animation:
+        abstractFloat4 23s ease-in-out infinite;
+}
+
+
+/* ==========================================
+   MANCHA ROSA
+   ========================================== */
+
+.shape-5 {
+    width: 360px;
+    height: 430px;
+
+    right: 18%;
+    bottom: 5%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(236, 72, 153, 0.40),
+            rgba(244, 114, 182, 0.12)
+        );
+
+    border-radius:
+        58% 42% 67% 33%
+        /
+        32% 63% 37% 68%;
+
+    transform: rotate(-20deg);
+
+    animation:
+        abstractFloat5 20s ease-in-out infinite;
+}
+
+/* ==========================================
+   PIXEL DUST
+   ========================================== */
+
+.pixel-dust {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+}
+
+
+/* Píxeles individuales */
+
+.pixel-dust::before,
+.pixel-dust::after {
+    content: "";
+
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    background: currentColor;
+
+    box-shadow:
+        18px -8px currentColor,
+        38px 5px currentColor,
+        55px -18px currentColor,
+        75px -4px currentColor,
+        92px -27px currentColor,
+        112px -12px currentColor,
+        132px -35px currentColor,
+        154px -20px currentColor,
+        174px -45px currentColor,
+        195px -28px currentColor;
+
+    opacity: 0.45;
+
+    filter: none;
+
+    animation:
+        pixelDisintegrate 8s ease-in-out infinite;
+}
+
+
+/* Segunda camada de píxeles */
+
+.pixel-dust::after {
+    width: 6px;
+    height: 6px;
+
+    box-shadow:
+        15px 8px currentColor,
+        32px 18px currentColor,
+        50px 2px currentColor,
+        68px 24px currentColor,
+        87px 10px currentColor,
+        108px 30px currentColor,
+        127px 15px currentColor,
+        148px 36px currentColor;
+
+    opacity: 0.30;
+
+    animation-delay: -3s;
+}
+
+.shape-1 .pixel-dust {
+    color: rgba(0, 61, 165, 0.75);
+
+    top: 65%;
+    left: 75%;
+
+    transform: rotate(-18deg);
+}
+
+
+.shape-2 .pixel-dust {
+    color: rgba(124, 58, 237, 0.70);
+
+    top: 35%;
+    left: -5%;
+
+    transform: rotate(25deg);
+}
+
+
+.shape-3 .pixel-dust {
+    color: rgba(6, 182, 212, 0.70);
+
+    top: 20%;
+    right: -5%;
+
+    transform: rotate(-12deg);
+}
+
+
+.shape-4 .pixel-dust {
+    color: rgba(180, 130, 20, 0.65);
+
+    top: 65%;
+    left: -5%;
+
+    transform: rotate(20deg);
+}
+
+
+.shape-5 .pixel-dust {
+    color: rgba(219, 39, 119, 0.60);
+
+    top: 15%;
+    right: -5%;
+
+    transform: rotate(-20deg);
+}
+
+@keyframes pixelDisintegrate {
+
+    0% {
+        transform:
+            translate(0, 0)
+            scale(1);
+
+        opacity: 0.15;
+    }
+
+    30% {
+        opacity: 0.55;
+    }
+
+    60% {
+        transform:
+            translate(35px, -18px)
+            scale(1.15);
+
+        opacity: 0.35;
+    }
+
+    100% {
+        transform:
+            translate(70px, -35px)
+            scale(0.7);
+
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+   ANIMACIONES DE LAS MANCHAS
+   ========================================== */
+
+@keyframes abstractFloat1 {
+
+    0%,
+    100% {
+        transform:
+            rotate(-18deg)
+            translate(0, 0);
+    }
+
+    50% {
+        transform:
+            rotate(-12deg)
+            translate(45px, 30px);
+    }
+}
+
+
+@keyframes abstractFloat2 {
+
+    0%,
+    100% {
+        transform:
+            rotate(23deg)
+            translate(0, 0);
+    }
+
+    50% {
+        transform:
+            rotate(28deg)
+            translate(-40px, -35px);
+    }
+}
+
+
+@keyframes abstractFloat3 {
+
+    0%,
+    100% {
+        transform:
+            rotate(-15deg)
+            translate(0, 0);
+    }
+
+    50% {
+        transform:
+            rotate(-8deg)
+            translate(40px, -35px);
+    }
+}
+
+
+@keyframes abstractFloat4 {
+
+    0%,
+    100% {
+        transform:
+            rotate(17deg)
+            translate(0, 0);
+    }
+
+    50% {
+        transform:
+            rotate(12deg)
+            translate(-30px, 40px);
+    }
+}
+
+
+@keyframes abstractFloat5 {
+
+    0%,
+    100% {
+        transform:
+            rotate(-20deg)
+            translate(0, 0);
+    }
+
+    50% {
+        transform:
+            rotate(-14deg)
+            translate(35px, -30px);
+    }
+}
+
+
+/* ==========================================
+   ICONOS FLOTANTES
+   ========================================== */
+
+.floating-icon {
+    position: absolute;
+
+    width: 55px;
+    height: 55px;
+
+    object-fit: contain;
+
+    opacity: 0.22;
+
+    filter:
+        drop-shadow(
+            0 8px 12px
+            rgba(37, 99, 235, 0.12)
+        );
+
+    animation:
+        floatingIcon 7s ease-in-out infinite;
+}
+
+
+.icon-1 {
+    top: 18%;
+    left: 7%;
+
+    animation-delay: 0s;
+}
+
+
+.icon-2 {
+    top: 34%;
+    right: 8%;
+
+    width: 65px;
+    height: 65px;
+
+    animation-delay: -2s;
+}
+
+
+.icon-3 {
+    bottom: 23%;
+    left: 10%;
+
+    width: 60px;
+    height: 60px;
+
+    animation-delay: -4s;
+}
+
+
+.icon-4 {
+    bottom: 12%;
+    right: 12%;
+
+    width: 48px;
+    height: 48px;
+
+    animation-delay: -1s;
+}
+
+
+/* ==========================================
+   ANIMACIONES
+   ========================================== */
+
+@keyframes floatingIcon {
+
+    0% {
+        transform:
+            translate3d(0, 0, 0)
+            rotate(0deg);
+    }
+
+    25% {
+        transform:
+            translate3d(8px, -15px, 0)
+            rotate(3deg);
+    }
+
+    50% {
+        transform:
+            translate3d(-5px, -25px, 0)
+            rotate(-3deg);
+    }
+
+    75% {
+        transform:
+            translate3d(-12px, -10px, 0)
+            rotate(2deg);
+    }
+
+    100% {
+        transform:
+            translate3d(0, 0, 0)
+            rotate(0deg);
+    }
+}
+
+
+@keyframes floatShape1 {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(80px, 60px)
+            scale(1.15);
+    }
+}
+
+
+@keyframes floatShape2 {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-70px, -50px)
+            scale(1.12);
+    }
+}
+
+
+@keyframes floatShape3 {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(50px, -60px)
+            scale(1.1);
+    }
+}
+
+
+/* ==========================================
+   CONTENIDO SOBRE EL FONDO
+   ========================================== */
+
+.header,
+.container,
+.footer {
+    position: relative;
+    z-index: 2;
+}
 
 
 /* ==========================================
@@ -43,118 +666,143 @@ body {
 .header {
     width: 100%;
 
-    background: #ffffff;
+    background:
+        rgba(255, 255, 255, 0.90);
 
-    border-bottom: 1px solid #e5e7eb;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-bottom:
+        1px solid rgba(0, 61, 165, 0.10);
 
     box-shadow:
-        0 2px 8px rgba(
-            0,
-            0,
-            0,
-            0.05
-        );
+        0 2px 12px
+        rgba(0, 0, 0, 0.05);
+
+    z-index: 10;
 }
 
 
 .header-container {
-    width: min(
-        1200px,
-        calc(100% - 40px)
-    );
+    width: calc(100% - 80px);
+    max-width: 1600px;
 
-    min-height: 70px;
+    min-height: 90px;
 
     margin: 0 auto;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
+
+    gap: 40px;
 }
 
 
 .header-brand {
     display: flex;
-
     align-items: center;
 
-    gap: 12px;
+    gap: 20px;
 
-    color: #222;
+    height: 70px;
 
     text-decoration: none;
 
-    font-weight: bold;
-
-    font-size: 17px;
+    flex-shrink: 0;
 }
 
 
-.header-brand-icon {
-    width: 42px;
+/* ==========================================
+   LOGOS
+   ========================================== */
 
-    height: 42px;
+.header-logo-unam {
+    width: auto;
+    height: 52px;
 
-    display: flex;
+    max-width: 150px;
 
-    align-items: center;
-
-    justify-content: center;
-
-    background: #2563eb;
-
-    color: white;
-
-    border-radius: 8px;
-
-    font-size: 11px;
-
-    font-weight: bold;
+    object-fit: contain;
+    display: block;
 }
 
+
+.header-logo-ceiich {
+    width: 230px;
+    height: 60px;
+
+    object-fit: contain;
+    display: block;
+}
+
+
+.header-logo-museo {
+    width: auto;
+    height: 52px;
+
+    max-width: 190px;
+
+    object-fit: contain;
+    display: block;
+}
+
+
+/* ==========================================
+   SEPARADORES DE LOGOS
+   ========================================== */
+
+.header-separator {
+    width: 1px;
+    height: 45px;
+
+    background: #cbd5e1;
+
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   NAVEGACIÓN
+   ========================================== */
 
 .header-actions {
     display: flex;
-
     align-items: center;
 
-    gap: 10px;
+    gap: 30px;
+
+    margin-left: auto;
 }
 
 
-.header-icon {
-    width: 42px;
-
-    height: 42px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 50%;
+.header-link {
+    color: #24324a;
 
     text-decoration: none;
 
-    font-size: 21px;
+    font-size: 16px;
+    font-weight: 600;
 
-    background: #f3f4f6;
+    padding: 10px 4px;
 
     transition:
-        background 0.2s,
+        color 0.2s,
         transform 0.2s;
 }
 
 
-.header-icon:hover {
-    background: #e5e7eb;
+.header-link:hover {
+    color: #2563eb;
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-1px);
 }
 
+
+.header-link.active {
+    color: #003da5;
+}
 
 
 /* ==========================================
@@ -177,17 +825,20 @@ h1 {
     margin: 0 0 8px;
 
     font-size: 32px;
+
+    color: #14213d;
+
+    letter-spacing: -0.5px;
 }
 
 
 .subtitle {
-    color: #666;
-
     margin: 0 0 30px;
+
+    color: #64748b;
 
     line-height: 1.6;
 }
-
 
 
 /* ==========================================
@@ -195,21 +846,24 @@ h1 {
    ========================================== */
 
 .card {
-    background: white;
+    background:
+        rgba(255, 255, 255, 0.92);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
     padding: 28px;
 
     margin-bottom: 25px;
 
-    border-radius: 14px;
+    border-radius: 16px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.80);
 
     box-shadow:
-        0 4px 15px rgba(
-            0,
-            0,
-            0,
-            0.07
-        );
+        0 10px 30px
+        rgba(15, 23, 42, 0.08);
 }
 
 
@@ -221,11 +875,12 @@ h1 {
 label {
     display: block;
 
+    margin-bottom: 10px;
+
     font-weight: bold;
 
-    margin-bottom: 10px;
+    color: #24324a;
 }
-
 
 
 /* ==========================================
@@ -239,46 +894,170 @@ textarea {
 
     padding: 13px;
 
-    border: 1px solid #d1d5db;
+    border: 1px solid #d1d9e6;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
     resize: vertical;
 
     font-family: inherit;
-
     font-size: 15px;
+
+    color: #172033;
+
+    background:
+        rgba(255, 255, 255, 0.80);
 
     outline: none;
 
     transition:
         border-color 0.2s,
-        box-shadow 0.2s;
+        box-shadow 0.2s,
+        background 0.2s;
 }
 
 
 textarea:focus {
     border-color: #2563eb;
 
+    background: #ffffff;
+
     box-shadow:
         0 0 0 3px
-        rgba(
-            37,
-            99,
-            235,
-            0.12
-        );
+        rgba(37, 99, 235, 0.12);
+}
+
+/* ==========================================
+   VIDEO
+   ========================================== */
+.video-container {
+    width: 100%;
+    max-width: 950px;
+
+    margin: 45px auto;
+
+    padding: 12px;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(15, 23, 42, 0.12);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 
+.home-video {
+    display: block;
 
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    border: 0;
+
+    border-radius: 14px;
+
+    background: #111;
+}
+
+/* ==========================================
+   BOTÓN TOUCH
+   ========================================== */
+
+.home-action {
+    display: flex;
+    justify-content: center;
+
+    margin: 40px auto 60px;
+
+    padding: 0 20px;
+}
+
+
+.enter-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 28px;
+
+    width: min(
+        430px,
+        90vw
+    );
+
+    min-height: 85px;
+
+    padding: 18px 30px;
+
+    border-radius: 22px;
+
+    text-decoration: none;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #003da5 0%,
+            #2563eb 55%,
+            #7c3aed 100%
+        );
+
+    border:
+        2px solid
+        rgba(255, 255, 255, 0.35);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 61, 165, 0.30);
+
+    -webkit-tap-highlight-color: transparent;
+
+    touch-action: manipulation;
+
+    user-select: none;
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease;
+}
+
+
+/* ===   TEXTO  ======= */
+
+.enter-button-text {
+    font-size: 22px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+}
+
+
+/* ========  RESPUESTA AL TOQUE ================== */
+
+.enter-button:active {
+    transform:
+        scale(0.96);
+
+    box-shadow:
+        0 5px 15px
+        rgba(0, 61, 165, 0.20);
+}
 /* ==========================================
    CARRUSEL
    ========================================== */
 
 .carousel {
     display: flex;
-
     align-items: center;
 
     gap: 12px;
@@ -298,45 +1077,18 @@ textarea:focus {
 
 .carousel-track {
     display: flex;
-
-    gap: 12px;
-
-    overflow-x: auto;
-
-    scroll-behavior: smooth;
-
-    padding: 10px 5px;
-
-    scrollbar-width: thin;
-
-    scrollbar-color:
-        #cbd5e1
-        transparent;
+    gap: 14px;
+    width: max-content;
+    transition: transform 0.6s ease-in-out;
 }
 
 
 .carousel-image {
-    width: 130px;
-
-    height: 130px;
-
+    width: 120px;
+    height: 120px;
+    flex: 0 0 120px;
     object-fit: cover;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    border: 3px solid transparent;
-
-    flex-shrink: 0;
-
-    opacity: 0.7;
-
-    transition:
-        transform 0.2s,
-        border-color 0.2s,
-        opacity 0.2s,
-        box-shadow 0.2s;
+    border-radius: 12px;
 }
 
 
@@ -356,18 +1108,12 @@ textarea:focus {
 
     box-shadow:
         0 4px 12px
-        rgba(
-            37,
-            99,
-            235,
-            0.25
-        );
+        rgba(37, 99, 235, 0.25);
 }
 
 
 .carousel-button {
     width: 42px;
-
     height: 42px;
 
     flex-shrink: 0;
@@ -376,7 +1122,12 @@ textarea:focus {
 
     border-radius: 50%;
 
-    background: #2563eb;
+    background:
+        linear-gradient(
+            135deg,
+            #003da5,
+            #2563eb
+        );
 
     color: white;
 
@@ -385,15 +1136,17 @@ textarea:focus {
     cursor: pointer;
 
     transition:
-        background 0.2s,
-        transform 0.2s;
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
 
 .carousel-button:hover {
-    background: #1d4ed8;
-
     transform: scale(1.05);
+
+    box-shadow:
+        0 5px 15px
+        rgba(37, 99, 235, 0.25);
 }
 
 
@@ -403,8 +1156,9 @@ textarea:focus {
     cursor: not-allowed;
 
     transform: none;
-}
 
+    box-shadow: none;
+}
 
 
 /* ==========================================
@@ -418,25 +1172,8 @@ textarea:focus {
 
     text-align: center;
 
-    background: #f8fafc;
-
-    border-radius: 10px;
-
-    border: 1px solid #e5e7eb;
-}
-
-/* ==========================================
-   CENTER CONTAINER
-   ========================================== */
-
-.center-container {
-    margin: 25px 0;
-
-    padding: 15px;
-
-    text-align: center;
-
-    background: #f8fafc;
+    background:
+        rgba(248, 250, 252, 0.85);
 
     border-radius: 10px;
 
@@ -448,7 +1185,6 @@ textarea:focus {
     display: block;
 
     max-width: 100%;
-
     max-height: 420px;
 
     margin: 0 auto;
@@ -459,9 +1195,8 @@ textarea:focus {
 }
 
 
-
 /* ==========================================
-   BOTÓN
+   BOTONES
    ========================================== */
 
 button {
@@ -469,77 +1204,57 @@ button {
 }
 
 
-#analyze-button {
-    background: #2563eb;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 8px;
-
-    padding: 13px 22px;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s,
-        transform 0.2s;
-}
-
-
-#analyze-button:hover {
-    background: #1d4ed8;
-
-    transform: translateY(-1px);
-}
-
-
-#analyze-button:disabled {
-    background: #9ca3af;
-
-    cursor: not-allowed;
-
-    transform: none;
-}
-
-
+#analyze-button,
 #goback-button {
-    background: #2563eb;
+    background:
+        linear-gradient(
+            135deg,
+            #003da5,
+            #2563eb
+        );
 
     color: white;
 
     border: none;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
     padding: 13px 22px;
 
     font-size: 16px;
+    font-weight: 600;
 
     cursor: pointer;
 
+    box-shadow:
+        0 5px 14px
+        rgba(37, 99, 235, 0.20);
+
     transition:
-        background 0.2s,
-        transform 0.2s;
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
 
-#go-back-button:hover {
-    background: #1d4ed8;
+#analyze-button:hover,
+#goback-button:hover {
+    transform: translateY(-2px);
 
-    transform: translateY(-1px);
+    box-shadow:
+        0 8px 20px
+        rgba(37, 99, 235, 0.28);
 }
 
 
-#go-back-button:disabled {
+#analyze-button:disabled,
+#goback-button:disabled {
     background: #9ca3af;
 
     cursor: not-allowed;
 
     transform: none;
+
+    box-shadow: none;
 }
 
 
@@ -549,9 +1264,13 @@ button {
 
 .loading[hidden] {
     display: none;
+}
+
+
+.loading {
+    display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 12px;
@@ -560,7 +1279,8 @@ button {
 
     margin-bottom: 25px;
 
-    background: #fff7ed;
+    background:
+        rgba(255, 247, 237, 0.90);
 
     color: #9a3412;
 
@@ -574,7 +1294,6 @@ button {
 
 .loading-spinner {
     width: 22px;
-
     height: 22px;
 
     border: 3px solid #fed7aa;
@@ -593,9 +1312,7 @@ button {
     to {
         transform: rotate(360deg);
     }
-
 }
-
 
 
 /* ==========================================
@@ -607,7 +1324,8 @@ button {
 
     margin-bottom: 25px;
 
-    background: #fee2e2;
+    background:
+        rgba(254, 226, 226, 0.90);
 
     color: #991b1b;
 
@@ -615,7 +1333,6 @@ button {
 
     border-radius: 8px;
 }
-
 
 
 /* ==========================================
@@ -629,6 +1346,8 @@ button {
 
 .result-card h2 {
     margin-top: 0;
+
+    color: #14213d;
 }
 
 
@@ -637,7 +1356,12 @@ button {
 
     margin-bottom: 20px;
 
-    background: #eff6ff;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(239, 246, 255, 0.95),
+            rgba(248, 250, 252, 0.95)
+        );
 
     border-left: 4px solid #2563eb;
 
@@ -649,14 +1373,13 @@ button {
 
 .result-metadata {
     display: flex;
-
     flex-wrap: wrap;
 
     gap: 25px;
 
     margin-bottom: 25px;
 
-    color: #555;
+    color: #64748b;
 }
 
 
@@ -695,7 +1418,6 @@ pre {
 }
 
 
-
 /* ==========================================
    FOOTER
    ========================================== */
@@ -703,11 +1425,35 @@ pre {
 .footer {
     width: 100%;
 
-    background: #1f2937;
+    margin-top: auto;
+
+    background:
+        rgba(31, 41, 55, 0.94);
 
     color: #d1d5db;
 
-    margin-top: auto;
+    position: relative;
+}
+
+
+.footer::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #003da5,
+            #2563eb,
+            #d6a52d
+        );
 }
 
 
@@ -751,13 +1497,29 @@ pre {
     text-decoration: none;
 
     font-size: 14px;
+
+    transition:
+        color 0.2s;
 }
 
 
 .footer-link:hover {
-    color: white;
+    color: #ffffff;
 }
 
+
+/* ==========================================
+   MOVIMIENTO REDUCIDO
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .floating-icon,
+    .floating-shape {
+        animation: none;
+    }
+
+}
 
 
 /* ==========================================
@@ -779,8 +1541,49 @@ pre {
     }
 
 
-    .header-brand span {
-        display: none;
+    .header-container {
+        min-height: 75px;
+
+        gap: 15px;
+    }
+
+
+    .header-brand {
+        gap: 10px;
+
+        height: 60px;
+    }
+
+
+    .header-logo-unam {
+        width: 48px;
+        height: 48px;
+    }
+
+
+    .header-logo-ceiich {
+        width: 150px;
+        height: 45px;
+    }
+
+
+    .header-logo-museo {
+        height: 40px;
+    }
+
+
+    .header-separator {
+        height: 35px;
+    }
+
+
+    .header-actions {
+        gap: 10px;
+    }
+
+
+    .header-link {
+        font-size: 14px;
     }
 
 
@@ -796,14 +1599,12 @@ pre {
 
     .carousel-image {
         width: 105px;
-
         height: 105px;
     }
 
 
     .carousel-button {
         width: 36px;
-
         height: 36px;
 
         font-size: 16px;
