@@ -194,7 +194,8 @@
              CARRUSEL
              ================================== -->
 
-        <div class="carousel">
+        <div class="carousel"
+                    id="carousel">
 
             <button
                 type="button"
@@ -231,33 +232,6 @@
             >
                 ❯
             </button>
-
-        </div>
-
-
-
-        <!-- ==================================
-             VISTA PREVIA
-             ================================== -->
-
-        <div
-            class="preview-container"
-            id="preview-container"
-            hidden
-        >
-
-            <div class="preview-label">
-                FOTOGRAFÍA SELECCIONADA
-            </div>
-
-            <div class="preview-frame">
-
-                <img
-                    id="image-preview"
-                    alt="Imagen seleccionada"
-                >
-
-            </div>
 
         </div>
 
@@ -313,26 +287,197 @@
 
 
     <!-- ======================================
-         LOADING
-         ====================================== -->
+     MODAL DE ANÁLISIS
+     ====================================== -->
 
     <div
-        id="loading"
-        class="loading"
+        id="analysis-modal"
+        class="analysis-modal"
         hidden
     >
 
-        <div class="loading-spinner"></div>
+        <div
+            class="analysis-modal-overlay"
+            id="analysis-modal-overlay"
+        ></div>
 
-        <div>
 
-            <strong>
-                Analizando fotografía
-            </strong>
+        <div
+            class="analysis-modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+        >
 
-            <span>
-                La inteligencia artificial está procesando la imagen...
-            </span>
+            <!-- ==============================
+                ESTADO: PROCESANDO
+                ============================== -->
+
+            <div
+                id="modal-processing"
+                class="modal-state"
+            >
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            PASO 02
+                        </span>
+
+                        <h2 id="modal-title">
+                            Analizando fotografía
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-video-container">
+
+                    <video
+                        id="analysis-video"
+                        class="analysis-video"
+                        playsinline
+                    >
+                        <source
+                            src="{{ url_for('static', filename='videos/explicacion.mp4') }}"
+                            type="video/mp4"
+                        >
+
+                        Tu navegador no soporta video HTML5.
+
+                    </video>
+
+                </div>
+
+
+                <div class="modal-loading-message">
+
+                    <div class="loading-spinner"></div>
+
+                    <div>
+
+                        <strong>
+                            La inteligencia artificial está procesando la imagen...
+                        </strong>
+
+                        <span>
+                            Esto puede tardar unos segundos.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==============================
+                ESTADO: RESULTADO
+                ============================== -->
+
+            <div
+                id="modal-result"
+                class="modal-state"
+                hidden
+            >
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ANÁLISIS COMPLETADO
+                        </span>
+
+                        <h2>
+                            Resultado
+                        </h2>
+
+                    </div>
+
+                    <div class="result-ai">
+                        ✓ ANALIZADO
+                    </div>
+
+                </div>
+
+                <!-- ==================================
+                    VISTA PREVIA
+                    ================================== -->
+
+                <div
+                    class="preview-container"
+                    id="preview-container"
+                    hidden
+                >
+
+                    <div class="preview-label">
+                        FOTOGRAFÍA SELECCIONADA
+                    </div>
+
+                    <div class="preview-frame">
+
+                        <img
+                            id="image-preview"
+                            alt="Imagen seleccionada"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="modal-summary"
+                    class="modal-result-analysis"
+                ></div>
+
+
+                <div class="result-metadata">
+
+                    <div class="metadata-item">
+
+                        <span>
+                            TIEMPO LLaVA
+                        </span>
+
+                        <strong>
+                            <span id="modal-ollama-time"></span>
+                            s
+                        </strong>
+
+                    </div>
+
+
+                    <div class="metadata-item">
+
+                        <span>
+                            TIEMPO TOTAL
+                        </span>
+
+                        <strong>
+                            <span id="modal-client-time"></span>
+                            s
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="close-analysis-modal"
+                    class="modal-close-button"
+                >
+                    Continuar
+                </button>
+
+            </div>
 
         </div>
 

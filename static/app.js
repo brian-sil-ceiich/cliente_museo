@@ -100,6 +100,63 @@ const clientTime =
         "client-time"
     );
 
+// ==========================================
+// MODAL DE ANÁLISIS
+// ==========================================
+
+const analysisModal =
+    document.getElementById(
+        "analysis-modal"
+    );
+
+
+const modalProcessing =
+    document.getElementById(
+        "modal-processing"
+    );
+
+
+const modalResult =
+    document.getElementById(
+        "modal-result"
+    );
+
+
+const analysisVideo =
+    document.getElementById(
+        "analysis-video"
+    );
+
+
+const modalSummary =
+    document.getElementById(
+        "modal-summary"
+    );
+
+
+const modalOllamaTime =
+    document.getElementById(
+        "modal-ollama-time"
+    );
+
+
+const modalClientTime =
+    document.getElementById(
+        "modal-client-time"
+    );
+
+
+const closeAnalysisModal =
+    document.getElementById(
+        "close-analysis-modal"
+    );
+
+
+const analysisModalOverlay =
+    document.getElementById(
+        "analysis-modal-overlay"
+    );
+
 
 // const jsonResult =
 //     document.getElementById(
@@ -124,6 +181,15 @@ const gobackButton =
 // ==========================================
 
 let selectedImage = null;
+
+
+// ==========================================
+// ESTADO DEL MODAL
+// ==========================================
+
+let videoFinished = false;
+let analysisFinished = false;
+let analysisData = null;
 
 
 // ==========================================
@@ -328,6 +394,109 @@ function hideLoading() {
 
 }
 
+// ==========================================
+// VIDEO TERMINÓ
+// ==========================================
+
+analysisVideo.addEventListener(
+    "ended",
+    () => {
+
+        console.log(
+            "El video terminó."
+        );
+
+
+        videoFinished = true;
+
+
+        checkAnalysisFinished();
+
+    }
+);
+
+// ==========================================
+// ABRIR MODAL
+// ==========================================
+
+function openAnalysisModal() {
+
+    analysisModal.hidden = false;
+    modalProcessing.hidden = false;
+    modalResult.hidden = true;
+
+    // Reiniciar estados
+    videoFinished = false;
+    analysisFinished = false;
+    analysisData = null;
+
+    // Reiniciar video
+    analysisVideo.currentTime = 0;
+    analysisVideo.play().catch(() => {});
+
+    // Bloquear scroll de la página
+    document.body.style.overflow = "hidden";
+}
+
+// ==========================================
+// VERIFICAR SI YA TERMINÓ TODO
+// ==========================================
+
+function checkAnalysisFinished() {
+
+    if (
+        videoFinished &&
+        analysisFinished
+    ) {
+
+        showModalResult(
+            analysisData
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// MOSTRAR RESULTADO EN MODAL
+// ==========================================
+
+function showModalResult(data) {
+
+    modalProcessing.hidden = true;
+    modalResult.hidden = false;
+
+    modalSummary.textContent =
+        data.analysis;
+
+    modalOllamaTime.textContent =
+        data.ollama_time;
+
+    modalClientTime.textContent =
+        data.client_time;
+
+    // Detener video
+    analysisVideo.pause();
+}
+
+
+// ==========================================
+// CERRAR MODAL
+// ==========================================
+
+function closeModal() {
+
+    analysisModal.hidden = true;
+
+    document.body.style.overflow = "";
+
+    analysisVideo.pause();
+
+    window.location.replace("http://localhost:5000/");
+
+}
+
 
 // ==========================================
 // MOSTRAR RESULTADO
@@ -393,26 +562,38 @@ async function analyzeImage() {
 
 
     if (!selectedImage) {
+
         showError(
             "Debes seleccionar una imagen."
         );
+
         return;
     }
 
-    const prompt = promptInput.value.trim();
-        
-    // const prompt = "Hola";
+
+    const prompt =
+        promptInput.value.trim();
+
 
     if (!prompt) {
+
         showError(
             "Debes escribir un prompt."
         );
+
         return;
     }
 
-    showLoading();
+
+    // ======================================
+    // ABRIR MODAL
+    // ======================================
+
+    openAnalysisModal();
+
 
     try {
+
         const response =
             await fetch(
                 "/analyze",
@@ -423,11 +604,17 @@ async function analyzeImage() {
                         "Content-Type":
                             "application/json"
                     },
+
                     body: JSON.stringify({
+
                         image:
-                            selectedImage.getAttribute("src"),
+                            selectedImage.getAttribute(
+                                "src"
+                            ),
+
                         prompt:
                             prompt
+
                     })
                 }
             );
@@ -435,6 +622,7 @@ async function analyzeImage() {
 
         const data =
             await response.json();
+
 
         if (!response.ok) {
 
@@ -444,20 +632,31 @@ async function analyzeImage() {
             );
         }
 
-        showResult(
-            data
-        );
+
+        // ==================================
+        // LA RESPUESTA YA LLEGÓ
+        // ==================================
+
+        analysisData = data;
+
+        analysisFinished = true;
+
+
+        // ==================================
+        // VERIFICAR VIDEO + RESPUESTA
+        // ==================================
+
+        checkAnalysisFinished();
 
 
     } catch (error) {
-        carousel.hidden = false;
-        analyzeButton.hidden = false;
-        gobackButton.hidden = false;
+
+        closeModal();
+
         showError(
             error.message
         );
-    } finally {
-        hideLoading();
+
     }
 
 }
@@ -480,6 +679,31 @@ analyzeButton.addEventListener(
 gobackButton.addEventListener(
     "click",
     index
+);
+
+// ==========================================
+// CERRAR MODAL
+// ==========================================
+
+closeAnalysisModal.addEventListener(
+    "click",
+    closeModal
+);
+
+
+analysisModalOverlay.addEventListener(
+    "click",
+    () => {
+
+        // Solo permitir cerrar si ya terminó
+
+        if (!modalResult.hidden) {
+
+            closeModal();
+
+        }
+
+    }
 );
 
 
