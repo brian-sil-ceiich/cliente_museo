@@ -190,7 +190,9 @@ let selectedImage = null;
 let videoFinished = false;
 let analysisFinished = false;
 let analysisData = null;
-
+let minimumTimeFinished = false;
+let analysisStartTime = null;
+const MINIMUM_ANALYSIS_TIME = 69000;
 
 // ==========================================
 // CREAR CARRUSEL
@@ -406,9 +408,7 @@ analysisVideo.addEventListener(
             "El video terminó."
         );
 
-
         videoFinished = true;
-
 
         checkAnalysisFinished();
 
@@ -420,22 +420,63 @@ analysisVideo.addEventListener(
 // ==========================================
 
 function openAnalysisModal() {
-
     analysisModal.hidden = false;
     modalProcessing.hidden = false;
     modalResult.hidden = true;
 
-    // Reiniciar estados
+    // Reiniciar estado
     videoFinished = false;
     analysisFinished = false;
     analysisData = null;
+    minimumTimeFinished = false;
+
+    // Registrar inicio
+    analysisStartTime =
+        Date.now();
 
     // Reiniciar video
     analysisVideo.currentTime = 0;
     analysisVideo.play().catch(() => {});
 
-    // Bloquear scroll de la página
+    // Bloquear scroll
     document.body.style.overflow = "hidden";
+
+
+    // ======================================
+    // ESPERAR 40 SEGUNDOS
+    // ======================================
+
+    setTimeout(
+        () => {
+            minimumTimeFinished = true;
+
+            // Cortar video
+            analysisVideo.pause();
+
+            // Verificar si LLaVA ya respondió
+            checkAnalysisReady();
+        },
+        MINIMUM_ANALYSIS_TIME
+    );
+}
+
+// ==========================================
+// VERIFICAR SI SE PUEDE MOSTRAR RESULTADO
+// ==========================================
+
+function checkAnalysisReady() {
+
+    if (
+        minimumTimeFinished &&
+        analysisFinished
+    ) {
+
+        showModalResult(
+            analysisData
+        );
+
+    }
+
 }
 
 // ==========================================
