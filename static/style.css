@@ -1,3 +1,10 @@
+@import url('https://googleapis.com');
+@font-face {
+    font-family: 'CS Claire Mono';
+    src: url('fonts/CSClaireMono-Regular.otf') format('opentype'); /* Cambia la ruta y el formato aquí */
+    font-weight: normal;
+    font-style: normal;
+}
 /* ==========================================
    RESET
    ========================================== */
@@ -828,17 +835,21 @@ body::before {
 
 
 h1 {
+    font-family: 'Inclusive Sans', sans-serif;
     margin: 0 0 8px;
-
     font-size: 32px;
-
     color: #14213d;
-
     letter-spacing: -0.5px;
 }
 
 
+h2 {
+    font-family: 'Inclusive Sans', sans-serif;
+}
+
+
 .subtitle {
+    font-family: 'CS Claire Mono', monospace;
     margin: 0 0 30px;
 
     color: #64748b;
