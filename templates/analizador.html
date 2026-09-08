@@ -28,15 +28,26 @@
 
         <div class="grid"></div>
 
-        <!-- Elementos decorativos.
-             Más adelante podemos sustituirlos
-             por tus imágenes e iconos reales. -->
+         <div class="floating-icon icon-1">
+            <img
+                src="{{ url_for('static', filename='images/iconos/+ amarillo.png') }}"
+                alt=""
+            >
+        </div>
 
-        <div class="floating-icon icon-1">✦</div>
-        <div class="floating-icon icon-2">◈</div>
-        <div class="floating-icon icon-3">✧</div>
-        <div class="floating-icon icon-4">●</div>
-        <div class="floating-icon icon-5">✦</div>
+        <div class="floating-icon icon-2">
+            <img
+                src="{{ url_for('static', filename='images/iconos/+ azul.png') }}"
+                alt=""
+            >
+        </div>
+
+        <div class="floating-icon icon-3">
+            <img
+                src="{{ url_for('static', filename='images/iconos/+ verde.png') }}"
+                alt=""
+            >
+        </div>
 
       
         <div class="floating-shape shape-1">
@@ -117,27 +128,16 @@
 
 <main class="container">
 
+    <div class="home-logos">
+        <img
+            src="{{ url_for('static', filename='images/logos/Dimi.png') }}"
+            class="logo-dimi"
+            alt="Dimi"
+        >
 
-    <!-- HERO -->
+    </div>
 
     <section class="hero">
-
-        <div class="hero-badge">
-
-            <span class="status-dot"></span>
-
-           DIMI IA
-
-        </div>
-
-
-        <h1>
-
-            Descubre lo que hay
-            <span>en una imagen.</span>
-
-        </h1>
-
 
         <p class="subtitle">
 
@@ -159,7 +159,17 @@
         class="card analysis-card"
         id="analysis-section"
     >
+         <img
+        src="{{ url_for('static', filename='images/mod5.png') }}"
+        class="corner-decoration corner-top-right"
+        alt=""
+    >
 
+    <img
+        src="{{ url_for('static', filename='images/mod6.png') }}"
+        class="corner-decoration corner-bottom-left"
+        alt=""
+    >
 
         <div class="section-heading">
 
@@ -194,8 +204,8 @@
              CARRUSEL
              ================================== -->
 
-        <div class="carousel" id="carousel">
-
+        <div class="carousel"
+                    id="carousel">
 
             <button
                 type="button"
@@ -319,13 +329,7 @@
             >
 
                 <div class="modal-header">
-
                     <div>
-
-                        <span class="eyebrow">
-                            PASO 02
-                        </span>
-
                         <h2 id="modal-title">
                             Analizando fotografía
                         </h2>
@@ -386,15 +390,9 @@
             >
 
                 <div class="modal-header">
-
                     <div>
-
-                        <span class="eyebrow">
-                            ANÁLISIS COMPLETADO
-                        </span>
-
                         <h2>
-                            Resultado
+                            ANÁLISIS COMPLETADO
                         </h2>
 
                     </div>
@@ -409,73 +407,97 @@
                     VISTA PREVIA
                     ================================== -->
 
-                <div
-                    class="preview-container"
-                    id="preview-container"
-                    hidden
+                <div class="modal-result-columns">
+
+    <!-- COLUMNA IZQUIERDA -->
+    <div class="modal-result-photo">
+
+        <div
+            class="preview-container"
+            id="preview-container"
+            hidden
+        >
+
+            <div class="preview-label">
+                FOTOGRAFÍA ANALIZADA
+            </div>
+
+            <div class="preview-frame">
+
+                <img
+                    id="image-preview"
+                    alt="Imagen analizada"
                 >
 
-                    <div class="preview-label">
-                        FOTOGRAFÍA SELECCIONADA
-                    </div>
+            </div>
 
-                    <div class="preview-frame">
+        </div>
 
-                        <img
-                            id="image-preview"
-                            alt="Imagen seleccionada"
-                        >
-
-                    </div>
-
-                </div>
+    </div>
 
 
-                <div
-                    id="modal-summary"
-                    class="modal-result-analysis"
-                ></div>
+    <!-- COLUMNA DERECHA -->
+    <div class="modal-result-info">
+
+        <div class="section-heading">
+            <div>
+                <h2>
+                    Resultado del análisis
+                </h2>
+
+            </div>
+        </div>
 
 
-                <div class="result-metadata">
-
-                    <div class="metadata-item">
-
-                        <span>
-                            TIEMPO LLaVA
-                        </span>
-
-                        <strong>
-                            <span id="modal-ollama-time"></span>
-                            s
-                        </strong>
-
-                    </div>
+        <div
+            id="modal-summary"
+            class="modal-result-analysis"
+        ></div>
 
 
-                    <div class="metadata-item">
+        <div class="result-metadata">
 
-                        <span>
-                            TIEMPO TOTAL
-                        </span>
+            <div class="metadata-item">
 
-                        <strong>
-                            <span id="modal-client-time"></span>
-                            s
-                        </strong>
+                <span>
+                    TIEMPO LLaVA
+                </span>
 
-                    </div>
+                <strong>
+                    <span id="modal-ollama-time"></span>
+                    s
+                </strong>
 
-                </div>
+            </div>
 
 
-                <button
-                    type="button"
-                    id="close-analysis-modal"
-                    class="modal-close-button"
-                >
-                    Continuar
-                </button>
+            <div class="metadata-item">
+
+                <span>
+                    TIEMPO TOTAL
+                </span>
+
+                <strong>
+                    <span id="modal-client-time"></span>
+                    s
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="close-analysis-modal"
+            class="modal-close-button"
+        >
+            Terminar
+        </button>
+
+    </div>
+
+</div>
 
             </div>
 
@@ -533,11 +555,6 @@
         <div class="section-heading">
 
             <div>
-
-                <span class="eyebrow">
-                    PASO 02
-                </span>
-
                 <h2>
                     Resultado del análisis
                 </h2>

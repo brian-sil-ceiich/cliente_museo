@@ -136,7 +136,7 @@ body::before {
 
 
 /* ==========================================
-   MANCHA MORADA
+   MANCHA AMARILLA
    ========================================== */
 
 .shape-2 {
@@ -146,11 +146,11 @@ body::before {
     top: 12%;
     right: -190px;
 
-    background:
+     background:
         linear-gradient(
-            160deg,
-            rgba(124, 58, 237, 0.55),
-            rgba(168, 85, 247, 0.20)
+            145deg,
+            rgba(238, 204, 133, 0.42),
+            rgba(238, 204, 133, 0.10)
         );
 
     border-radius:
@@ -209,8 +209,8 @@ body::before {
     background:
         linear-gradient(
             145deg,
-            rgba(214, 165, 45, 0.52),
-            rgba(245, 158, 11, 0.16)
+            rgba(238, 204, 133, 0.42),
+            rgba(238, 204, 133, 0.10)
         );
 
     border-radius:
@@ -239,8 +239,8 @@ body::before {
     background:
         linear-gradient(
             145deg,
-            rgba(236, 72, 153, 0.40),
-            rgba(244, 114, 182, 0.12)
+            rgba(165, 66, 129, 0.42),
+            rgba(165, 66, 129, 0.10)
         );
 
     border-radius:
@@ -514,6 +514,12 @@ body::before {
 
     animation:
         floatingIcon 7s ease-in-out infinite;
+}
+.floating-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
 }
 
 
@@ -1018,9 +1024,9 @@ textarea:focus {
     background:
         linear-gradient(
             135deg,
-            #003da5 0%,
-            #2563eb 55%,
-            #7c3aed 100%
+            #0b3042 0%,
+            #075462 48%,
+            #017166 100%
         );
 
     border:
@@ -1029,7 +1035,7 @@ textarea:focus {
 
     box-shadow:
         0 12px 30px
-        rgba(0, 61, 165, 0.30);
+        rgba(1, 113, 102, 0.30);
 
     -webkit-tap-highlight-color: transparent;
 
@@ -1143,11 +1149,12 @@ textarea:focus {
     border-radius: 50%;
 
     background:
-        linear-gradient(
-            135deg,
-            #003da5,
-            #2563eb
-        );
+    linear-gradient(
+        135deg,
+        #0b3042 0%,
+        #145064 50%,
+        #017166 100%
+    );
 
     color: white;
 
@@ -1226,14 +1233,21 @@ button {
 
 #analyze-button,
 #goback-button {
-    background:
+     background:
         linear-gradient(
             135deg,
-            #003da5,
-            #2563eb
+            #4758a4 0%,
+            #6d5092 50%,
+            #a54281 100%
         );
 
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+    margin-right: auto;
 
     border: none;
 
@@ -1247,8 +1261,8 @@ button {
     cursor: pointer;
 
     box-shadow:
-        0 5px 14px
-        rgba(37, 99, 235, 0.20);
+        0 12px 30px
+        rgba(71, 88, 164, 0.30);
 
     transition:
         transform 0.2s,
@@ -1904,8 +1918,9 @@ pre {
     background:
         linear-gradient(
             135deg,
-            #003da5,
-            #2563eb
+            #4758a4 0%,
+            #6d5092 50%,
+            #a54281 100%
         );
 
     color: white;
@@ -1917,8 +1932,8 @@ pre {
     cursor: pointer;
 
     box-shadow:
-        0 5px 14px
-        rgba(37, 99, 235, 0.20);
+        0 12px 30px
+        rgba(71, 88, 164, 0.30);
 
     transition:
         transform 0.2s,
@@ -1978,3 +1993,125 @@ pre {
     }
 
 }
+
+@media (max-width: 800px) {
+
+    .modal-result-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-result-photo .preview-frame {
+        min-height: 300px;
+    }
+}
+
+.modal-result-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: stretch;
+}
+
+.modal-result-photo {
+    min-width: 0;
+}
+
+.modal-result-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-result-photo .preview-container {
+    height: 100%;
+}
+
+.modal-result-photo .preview-frame {
+    height: 100%;
+    min-height: 420px;
+}
+
+.modal-result-photo .preview-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/* /////////////// LOGOS i+IA y DIMI
+//////////////////////////////////////////////*/
+.home-logos {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto 15px;
+    position: relative;
+    height: 175px;
+}
+
+.home-logo-iia {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    width: 220px;
+    height: auto;
+    display: block;
+}
+
+.home-logo-dimi {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -80px;
+    width: 270px;
+    height: auto;
+    display: block;
+}
+.logo-dimi {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0px;
+    width: 270px;
+    height: auto;
+    display: block;
+}
+/* ==========================================
+   ESQUINEROS DECORATIVOS
+   ========================================== */
+
+.analysis-card {
+    position: relative;
+    overflow: visible;
+}
+
+.corner-decoration {
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    object-fit: contain;
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+/* Esquina superior derecha */
+
+.corner-top-right {
+    top: -35px;
+    right: -35px;
+}
+
+
+/* Esquina inferior izquierda */
+
+.corner-bottom-left {
+    bottom: -35px;
+    left: -35px;
+}
+
+/* ==========================================
+   REDES
+   ========================================== */

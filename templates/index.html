@@ -26,17 +26,32 @@
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
 
+
         <div class="grid"></div>
 
-        <!-- Elementos decorativos.
-             Más adelante podemos sustituirlos
-             por tus imágenes e iconos reales. -->
+        <!-- Elementos decorativos -->
+        
 
-        <div class="floating-icon icon-1">✦</div>
-        <div class="floating-icon icon-2">◈</div>
-        <div class="floating-icon icon-3">✧</div>
-        <div class="floating-icon icon-4">●</div>
-        <div class="floating-icon icon-5">✦</div>
+        <div class="floating-icon icon-1">
+            <img
+                src="{{ url_for('static', filename='images/iconos/+ amarillo.png') }}"
+                alt=""
+            >
+        </div>
+
+        <div class="floating-icon icon-2">
+            <img
+                src="{{ url_for('static', filename='images/iconos/+ azul.png') }}"
+                alt=""
+            >
+        </div>
+
+        <div class="floating-icon icon-3">
+            <img
+                src="{{ url_for('static', filename='images/iconos/+ verde.png') }}"
+                alt=""
+            >
+        </div>
 
       
         <div class="floating-shape shape-1">
@@ -112,18 +127,29 @@
      CONTENIDO
      ========================================== -->
 
+<div class="home-logos">
+
+    <img
+        src="{{ url_for('static', filename='images/logos/i+IA.png') }}"
+        class="home-logo-iia"
+        alt="i+IA"
+    >
+
+    <img
+        src="{{ url_for('static', filename='images/logos/Dimi.png') }}"
+        class="home-logo-dimi"
+        alt="Dimi"
+    >
+
+</div>
+
 <main class="container">
 
-    <section class="hero">
-        <div class="hero-badge">
-            <span class="status-dot"></span>
-             DIMI IA
-        </div>
-
-        <h1>
+    <section class="hero" style="padding-top: 40px;">
+        <div align="center"><h1>
             Descubre lo que hay
             <span>en una imagen.</span>
-        </h1>
+        </h1></div>
     </section>
 
     <section class="video-container">
