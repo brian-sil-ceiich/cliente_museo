@@ -294,35 +294,46 @@ const PAGE_WIDTH =
     IMAGES_PER_PAGE;
 
 
-prevButton.addEventListener(
-    "click",
-    () => {
+if (
+    prevButton &&
+    nextButton &&
+    carouselTrack
+) {
 
-        if (currentPage > 0) {
+    prevButton.addEventListener(
+        "click",
+        () => {
 
-            currentPage--;
+            if (currentPage > 0) {
 
-            carouselTrack.style.transform =
-                `translateX(-${currentPage * PAGE_WIDTH}px)`;
+                currentPage--;
+
+                carouselTrack.style.transform =
+                    `translateX(-${currentPage * PAGE_WIDTH}px)`;
+
+            }
+
         }
-    }
-);
+    );
 
 
-nextButton.addEventListener(
-    "click",
-    () => {
+    nextButton.addEventListener(
+        "click",
+        () => {
 
-        if (currentPage < 2) {
+            if (currentPage < 2) {
 
-            currentPage++;
+                currentPage++;
 
-            carouselTrack.style.transform =
-                `translateX(-${currentPage * PAGE_WIDTH}px)`;
+                carouselTrack.style.transform =
+                    `translateX(-${currentPage * PAGE_WIDTH}px)`;
+
+            }
+
         }
-    }
-);
+    );
 
+}
 
 // ==========================================
 // MOSTRAR ERROR

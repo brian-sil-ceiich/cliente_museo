@@ -30,28 +30,103 @@
         <div class="grid"></div>
 
         <!-- Elementos decorativos -->
-        
 
-        <div class="floating-icon icon-1">
-            <img
-                src="{{ url_for('static', filename='images/iconos/+ amarillo.png') }}"
-                alt=""
-            >
-        </div>
 
-        <div class="floating-icon icon-2">
-            <img
-                src="{{ url_for('static', filename='images/iconos/+ azul.png') }}"
-                alt=""
-            >
-        </div>
+       <!-- ==========================================
+     RED DECORATIVA
+     ========================================== -->
 
-        <div class="floating-icon icon-3">
-            <img
-                src="{{ url_for('static', filename='images/iconos/+ verde.png') }}"
-                alt=""
-            >
-        </div>
+<div class="neural-network" aria-hidden="true">
+
+    <svg
+        class="neural-lines"
+        viewBox="0 0 1000 700"
+        preserveAspectRatio="none"
+    >
+
+        <!-- ICONO 1 → RAMAS -->
+
+        <path d="M90 135 L170 120 L215 110"></path>
+        <path d="M90 135 L145 190 L205 190"></path>
+
+        <rect class="node-1" x="215" y="103" width="14" height="14"></rect>
+        <rect class="node-2" x="205" y="183" width="14" height="14"></rect>
+
+
+        <!-- RAMA EXTRA -->
+
+        <path d="M205 190 L260 225 L315 225"></path>
+
+        <rect  class="node-3"x="315" y="218" width="14" height="14"></rect>
+
+
+        <!-- ICONO 2 → RAMAS -->
+
+        <path d="M892 250 L820 220 L765 220"></path>
+        <path d="M892 250 L835 315 L775 315"></path>
+
+        <rect class="node-4" x="751" y="213" width="14" height="14"></rect>
+        <rect class="node-5" x="761" y="308" width="14" height="14"></rect>
+
+
+        <!-- RAMA EXTRA -->
+
+        <path d="M775 315 L720 350 L665 350"></path>
+
+        <rect class="node-6" x="651" y="343" width="14" height="14"></rect>
+
+
+        <!-- ICONO 3 → RAMAS -->
+
+        <path d="M120 520 L190 500 L245 500"></path>
+        <path d="M120 520 L175 585 L235 585"></path>
+
+        <rect class="node-7" x="245" y="493" width="14" height="14"></rect>
+        <rect class="node-8" x="235" y="578" width="14" height="14"></rect>
+
+
+        <!-- RAMA EXTRA -->
+
+        <path d="M235 585 L285 620 L345 620"></path>
+
+        <rect class="node-9" x="345" y="613" width="14" height="14"></rect>
+
+    </svg>
+
+
+    <!-- ICONO 1 -->
+
+    <div class="floating-icon icon-1">
+        <img
+            src="{{ url_for('static', filename='images/iconos/+ amarillo.png') }}"
+            alt=""
+        >
+    </div>
+
+
+    <!-- ICONO 2 -->
+
+    <div class="floating-icon icon-2">
+        <img
+            src="{{ url_for('static', filename='images/iconos/+ azul.png') }}"
+            alt=""
+        >
+    </div>
+
+
+    <!-- ICONO 3 -->
+
+    <div class="floating-icon icon-3">
+        <img
+            src="{{ url_for('static', filename='images/iconos/+ verde.png') }}"
+            alt=""
+        >
+    </div>
+
+</div>
+<!-- ==========================================
+    ELEMENTOS DECORATIVOS
+     ========================================== -->
 
       
         <div class="floating-shape shape-1">
@@ -93,7 +168,7 @@
             <span class="header-separator"></span>
 
             <img
-                src="{{ url_for('static', filename='images/logos/logo_ceiich.svg') }}"
+                src="{{ url_for('static', filename='images/logos/logo_museo-iisue.png') }}"
                 class="header-logo-museo"
                 alt="CEIICH"
             >
@@ -101,7 +176,7 @@
             <span class="header-separator"></span>
 
             <img
-                src="{{ url_for('static', filename='images/logos/logo_museo-iisue.png') }}"
+                src="{{ url_for('static', filename='images/logos/logo_ceiich.svg') }}"
                 class="header-logo-museo"
                 alt="Museo UNAM Hoy"
             >
@@ -130,7 +205,7 @@
 <div class="home-logos">
 
     <img
-        src="{{ url_for('static', filename='images/logos/i+IA.png') }}"
+        src="{{ url_for('static', filename='images/logos/logo-final.png') }}"
         class="home-logo-iia"
         alt="i+IA"
     >
@@ -182,7 +257,7 @@
         <div class="footer-brand">
 
             <div class="footer-logo">
-                UNAM
+                CEIICH
             </div>
 
             <span>
@@ -192,19 +267,47 @@
         </div>
 
 
+        <div class="footer-images">
+
+    <div class="footer-images-first">
+
+        <img
+            src="{{ url_for('static', filename='images/footer/mod1.png') }}"
+            alt=""
+        >
+
+        <img
+            src="{{ url_for('static', filename='images/footer/mod2.png') }}"
+            alt=""
+        >
+
+    </div>
+
+    <img
+        src="{{ url_for('static', filename='images/footer/mod3.png') }}"
+        alt=""
+    >
+
+    <img
+        src="{{ url_for('static', filename='images/footer/mod4.png') }}"
+        alt=""
+    >
+
+    <img
+        src="{{ url_for('static', filename='images/footer/mod1.png') }}"
+        alt=""
+    >
+
+</div>
+
         <span class="footer-copy">
-            AI Analyzer © 2026
+            DIMI IA © 2026
         </span>
 
     </div>
 
 </footer>
 
-
-
-<script
-    src="{{ url_for('static', filename='app.js') }}"
-></script>
 
 </body>
 
