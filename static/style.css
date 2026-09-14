@@ -1,7 +1,7 @@
 @import url('https://googleapis.com');
 @font-face {
     font-family: 'CS Claire Mono';
-    src: url('fonts/CSClaireMono-Regular.otf') format('opentype'); /* Cambia la ruta y el formato aquí */
+    src: url('fonts/CSClaireMono-Regular_demo.otf') format('opentype'); /* Cambia la ruta y el formato aquí */
     font-weight: normal;
     font-style: normal;
 }

@@ -21,6 +21,11 @@ LLAVA_API_URL = os.getenv(
     "http://132.248.159.187/api/v1/analyze/imagen_llava",
 )
 
+FEEDBACK_API_URL = os.getenv(
+    "FEEDBACK_API_URL",
+    "http://132.248.159.187/api/v1/analyze/feedback",
+)
+
 
 LLAVA_API_KEY = os.getenv(
     "LLAVA_API_KEY"
@@ -41,6 +46,7 @@ def analizador():
 @app.post("/analyze")
 def analyze():
 
+    print("Entra a endpoint")
     data = request.get_json()
 
     start = time.perf_counter()
@@ -104,7 +110,6 @@ def analyze():
         )
     )
 
-
     if not os.path.isfile(
         image_path
     ):
@@ -113,7 +118,7 @@ def analyze():
             "error": "La imagen no existe."
         }), 404
 
-
+    print("Antes del Try")
     try:
 
         with open(
@@ -137,7 +142,6 @@ def analyze():
                         ),
 
                         image_file,
-
                         "image/jpeg"
                     )
                 },
@@ -145,12 +149,11 @@ def analyze():
                 data={
                     "prompt": prompt
                 },
-
                 timeout=240,
             )
 
-
         if not response.ok:
+            
 
             return jsonify({
                 "error":
@@ -174,6 +177,72 @@ def analyze():
             "error":
                 f"No fue posible conectar con la API: {exc}"
         }), 502
+    
+    except Exception as exc:
+
+        raise HTTPException(
+            status_code=502,
+            detail=f"Error al consultar LLaVA: {exc}",
+        )
+
+
+@app.route("/analyze/feedback", methods=["POST"])
+def analyze_feedback():
+
+    print("Entra a feed de app.py")
+    id_peticion = request.form.get("id_peticion")
+    edad = request.form.get("edad")
+    emocion = request.form.get("emocion")
+
+    print("ID petición:", id_peticion)
+    print("Feedback edad:", edad)
+    print("Feedback emoción:", emocion)
+
+    # Guardar en BD...
+    print("Antes del Try")
+    try:
+        response = requests.post(
+
+            FEEDBACK_API_URL,
+
+            headers={
+                "X-API-Key":
+                    LLAVA_API_KEY
+            },
+            data={
+                "id_peticion": id_peticion,
+                "edad": edad,
+                "emocion": emocion
+            },
+            timeout=240,
+        )
+
+        if not response.ok:            
+
+            return jsonify({
+                "error":
+                    response.text
+            }), response.status_code
+
+    except requests.RequestException as exc:
+    
+            return jsonify({
+                "error":
+                    f"No fue posible conectar con la API: {exc}"
+            }), 502
+        
+    except Exception as exc:
+
+        raise HTTPException(
+            status_code=502,
+            detail=f"Error al consultar LLaVA: {exc}",
+        )
+    
+
+    return jsonify({
+        "success": True,
+        "message": "Feedback guardado correctamente"
+    })
 
 
 if __name__ == "__main__":

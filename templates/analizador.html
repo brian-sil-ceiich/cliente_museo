@@ -555,13 +555,98 @@
         </div>
 
 
-        <button
+        <form id="feedback-form" class="feedback-form">
+
+            <h3>¿Qué tan satisfecho estás con la respuesta?</h3>
+
+            <div class="feedback-group">
+
+                <h4>Edad</h4>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="edad"
+                        value="5"
+                        required
+                    >
+                    De acuerdo
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="edad"
+                        value="3"
+                    >
+                    Neutro
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="edad"
+                        value="1"
+                    >
+                    En desacuerdo
+                </label>
+
+            </div>
+
+
+            <div class="feedback-group">
+
+                <h4>Emoción</h4>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="emocion"
+                        value="5"
+                        required
+                    >
+                    De acuerdo
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="emocion"
+                        value="3"
+                    >
+                    Neutro
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="emocion"
+                        value="1"
+                    >
+                    En desacuerdo
+                </label>
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="feedback-button"
+                class="modal-close-button"
+            >
+                Enviar evaluación
+            </button>
+
+        </form>
+
+
+        <!-- <button
             type="button"
             id="close-analysis-modal"
             class="modal-close-button"
         >
             Terminar
-        </button>
+        </button> -->
 
     </div>
 

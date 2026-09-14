@@ -11,6 +11,18 @@ const IMAGE_FOLDER = "/static/images/";
 // ELEMENTOS
 // ==========================================
 
+const feedbackForm =
+    document.getElementById(
+        "feedback-form"
+    );
+
+
+const feedbackButton =
+    document.getElementById(
+        "feedback-button"
+    );
+
+
 const carousel =
     document.getElementById(
         "carousel"
@@ -146,10 +158,10 @@ const modalClientTime =
     );
 
 
-const closeAnalysisModal =
-    document.getElementById(
-        "close-analysis-modal"
-    );
+// const closeAnalysisModal =
+//     document.getElementById(
+//         "close-analysis-modal"
+//     );
 
 
 const analysisModalOverlay =
@@ -181,6 +193,7 @@ const gobackButton =
 // ==========================================
 
 let selectedImage = null;
+let id_peticion = null;
 
 
 // ==========================================
@@ -528,6 +541,24 @@ function showModalResult(data) {
     modalClientTime.textContent =
         data.client_time;
 
+        // ======================================
+    // GUARDAR ID DE LA PETICIÓN
+    // ======================================
+
+    id_peticion = data.id_peticion;
+
+    console.log(
+        "ID de petición:",
+        id_peticion
+    );
+
+
+    // ======================================
+    // MOSTRAR FORMULARIO DE FEEDBACK
+    // ======================================
+
+    feedbackForm.hidden = false;
+
     // Detener video
     analysisVideo.pause();
 }
@@ -643,7 +674,6 @@ async function analyzeImage() {
 
     openAnalysisModal();
 
-
     try {
 
         const response =
@@ -684,6 +714,13 @@ async function analyzeImage() {
             );
         }
 
+        id_peticion = data.id_peticion;
+
+        console.log(
+            "ID de petición recibido:",
+            id_peticion
+        );
+
 
         // ==================================
         // LA RESPUESTA YA LLEGÓ
@@ -703,7 +740,7 @@ async function analyzeImage() {
 
     } catch (error) {
 
-        closeModal();
+        // closeModal();
 
         showError(
             error.message
@@ -712,6 +749,149 @@ async function analyzeImage() {
     }
 
 }
+
+// ==========================================
+// ENVIAR FEEDBACK
+// ==========================================
+
+feedbackForm.addEventListener(
+    "submit",
+    async (event) => {
+
+        event.preventDefault();
+
+        hideError();
+
+        if (!id_peticion) {
+
+            showError(
+                "No existe una petición asociada al resultado."
+            );
+
+            return;
+        }
+
+        const edad =
+            document.querySelector(
+                'input[name="edad"]:checked'
+            );
+
+        const emocion =
+            document.querySelector(
+                'input[name="emocion"]:checked'
+            );
+
+        if (!edad || !emocion) {
+
+            showError(
+                "Debes responder ambas evaluaciones."
+            );
+
+            return;
+        }
+
+        feedbackButton.disabled = true;
+
+        feedbackButton.textContent =
+            "Enviando...";
+
+        try {
+            const formData =
+                new FormData();
+
+            formData.append(
+                "id_peticion",
+                id_peticion
+            );
+
+            formData.append(
+                "edad",
+                edad.value
+            );
+
+            formData.append(
+                "emocion",
+                emocion.value
+            );
+
+            console.log(
+                "Enviando feedback:",
+                {
+                    id_peticion: id_peticion,
+                    edad: edad.value,
+                    emocion: emocion.value
+                }
+            );
+            
+            const response =
+                await fetch(
+                    "/analyze/feedback",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+            const responseText =
+                await response.text();
+
+
+            console.log(
+                "Status feedback:",
+                response.status
+            );
+
+
+            console.log(
+                "Respuesta feedback:",
+                responseText
+            );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `Error del servidor (${response.status}): ${responseText}`
+                );
+            }
+
+
+            const data =
+                JSON.parse(
+                    responseText
+                );
+
+            console.log(
+                "Feedback guardado:",
+                data
+            );
+
+            feedbackButton.textContent =
+                "Evaluación enviada";
+
+        } catch (error) {
+
+            console.error(
+                "Error enviando feedback:",
+                error
+            );
+
+
+            showError(
+                error.message
+            );
+
+
+            feedbackButton.disabled =
+                false;
+
+
+            feedbackButton.textContent =
+                "Enviar evaluación";
+
+        }
+        closeModal()
+    }
+);
 
 
 // ==========================================
@@ -733,14 +913,14 @@ gobackButton.addEventListener(
     index
 );
 
-// ==========================================
-// CERRAR MODAL
-// ==========================================
+// // ==========================================
+// // CERRAR MODAL
+// // ==========================================
 
-closeAnalysisModal.addEventListener(
-    "click",
-    closeModal
-);
+// closeAnalysisModal.addEventListener(
+//     "click",
+//     closeModal
+// );
 
 
 analysisModalOverlay.addEventListener(
