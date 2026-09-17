@@ -1705,6 +1705,9 @@ pre {
         95vw
     );
 
+    /* BAMS Comentar si se quiere video en Horizontal */
+    width: 500px;
+
     max-height: 90vh;
 
     overflow-y: auto;
@@ -1798,7 +1801,8 @@ pre {
 
     width: 100%;
 
-    max-height: 500px;
+    /*BAMS Poner esto max-height: 500px; si se quiere video en horizontan*/
+    height: 700px;
 
     aspect-ratio: 16 / 9;
 
