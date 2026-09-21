@@ -172,7 +172,7 @@ let analysisFinished = false;
 let analysisData = null;
 let minimumTimeFinished = false;
 let analysisStartTime = null;
-const MINIMUM_ANALYSIS_TIME = 61000;
+const MINIMUM_ANALYSIS_TIME = 64000;
 
 
 
