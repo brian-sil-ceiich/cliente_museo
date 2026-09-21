@@ -15,6 +15,18 @@ from urllib.parse import urlparse
 
 app = Flask(__name__)
 
+IMAGE_FOLDER = os.path.join(
+    app.static_folder,
+    "images"
+)
+
+ALLOWED_EXTENSIONS = {
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".gif",
+    ".webp"
+}
 
 LLAVA_API_URL = os.getenv(
     "LLAVA_API_URL",
@@ -26,10 +38,50 @@ FEEDBACK_API_URL = os.getenv(
     "http://132.248.159.187/api/v1/analyze/feedback",
 )
 
-
 LLAVA_API_KEY = os.getenv(
     "LLAVA_API_KEY"
 )
+
+def get_images():
+    images = []
+
+    for filename in os.listdir(IMAGE_FOLDER):
+
+        filepath = os.path.join(
+            IMAGE_FOLDER,
+            filename
+        )
+
+        # Ignorar carpetas
+        if not os.path.isfile(filepath):
+            continue
+
+        # Obtener extensión
+        extension = os.path.splitext(
+            filename
+        )[1].lower()
+
+        # Solo imágenes
+        if extension not in ALLOWED_EXTENSIONS:
+            continue
+
+        # Fecha de modificación
+        modification_date = os.path.getmtime(
+            filepath
+        )
+
+        images.append({
+            "filename": filename,
+            "date": modification_date
+        })
+
+    # Más reciente primero
+    images.sort(
+        key=lambda image: image["date"],
+        reverse=True
+    )
+
+    return images
 
 
 @app.route("/")
@@ -41,7 +93,8 @@ def index():
 
 @app.route("/analizador")
 def analizador():
-    return render_template("analizador.html")
+    images = get_images()
+    return render_template("analizador.html", images=images)
 
 @app.post("/analyze")
 def analyze():

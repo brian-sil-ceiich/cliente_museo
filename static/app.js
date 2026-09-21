@@ -1,13 +1,4 @@
 // ==========================================
-// CONFIGURACIÓN
-// ==========================================
-
-const TOTAL_IMAGES = 20;
-
-const IMAGE_FOLDER = "/static/images/";
-
-
-// ==========================================
 // ELEMENTOS
 // ==========================================
 
@@ -20,30 +11,6 @@ const feedbackForm =
 const feedbackButton =
     document.getElementById(
         "feedback-button"
-    );
-
-
-const carousel =
-    document.getElementById(
-        "carousel"
-    );
-
-
-const carouselTrack =
-    document.getElementById(
-        "carousel-track"
-    );
-
-
-const prevButton =
-    document.getElementById(
-        "prev-button"
-    );
-
-
-const nextButton =
-    document.getElementById(
-        "next-button"
     );
 
 
@@ -205,50 +172,7 @@ let analysisFinished = false;
 let analysisData = null;
 let minimumTimeFinished = false;
 let analysisStartTime = null;
-const MINIMUM_ANALYSIS_TIME = 69000;
-
-// ==========================================
-// CREAR CARRUSEL
-// ==========================================
-
-function createCarousel() {
-
-    carouselTrack.innerHTML = "";
-
-    for (
-        let i = 1;
-        i <= TOTAL_IMAGES;
-        i++
-    ) {
-
-        const image =
-            document.createElement("img");
-
-        const number =
-            String(i).padStart(2, "0");
-
-        image.src =
-            `${IMAGE_FOLDER}imagen_${number}.png`;
-
-        image.alt =
-            `Fotografía ${i}`;
-
-        image.className =
-            "carousel-image";
-
-        image.dataset.index =
-            i;
-
-        image.addEventListener(
-            "click",
-            () => {
-                selectImage(image);
-            }
-        );
-
-        carouselTrack.appendChild(image);
-    }
-}
+const MINIMUM_ANALYSIS_TIME = 61000;
 
 
 
@@ -260,7 +184,7 @@ function selectImage(image) {
 
     const previousSelected =
         document.querySelector(
-            ".carousel-image.selected"
+            ".gallery-image.selected"
         );
 
 
@@ -290,63 +214,248 @@ function selectImage(image) {
 
 }
 
+function setupImageSelection() {
 
-// ==========================================
-// BOTONES ANTERIOR, SIGUIENTE
-// ==========================================
-
-let currentPage = 0;
-
-const IMAGES_PER_PAGE = 7;
-
-const IMAGE_WIDTH = 120;
-const IMAGE_GAP = 14;
-
-const PAGE_WIDTH =
-    (IMAGE_WIDTH + IMAGE_GAP) *
-    IMAGES_PER_PAGE;
+    const images =
+        document.querySelectorAll(
+            ".gallery-image"
+        );
 
 
-if (
-    prevButton &&
-    nextButton &&
-    carouselTrack
-) {
+    images.forEach(
+        image => {
 
-    prevButton.addEventListener(
-        "click",
-        () => {
+            image.addEventListener(
+                "click",
+                () => {
 
-            if (currentPage > 0) {
+                    selectImage(image);
 
-                currentPage--;
-
-                carouselTrack.style.transform =
-                    `translateX(-${currentPage * PAGE_WIDTH}px)`;
-
-            }
-
-        }
-    );
-
-
-    nextButton.addEventListener(
-        "click",
-        () => {
-
-            if (currentPage < 2) {
-
-                currentPage++;
-
-                carouselTrack.style.transform =
-                    `translateX(-${currentPage * PAGE_WIDTH}px)`;
-
-            }
+                }
+            );
 
         }
     );
 
 }
+
+
+
+// ==========================================
+// CONFIGURACIÓN DE GRILLA
+// ==========================================
+
+const IMAGES_PER_PAGE = 15;
+
+const imageGrid =
+    document.getElementById(
+        "image-grid"
+    );
+
+const pagination =
+    document.getElementById(
+        "pagination"
+    );
+
+let currentPage = 1;
+
+// ==========================================
+// CREAR LA PAGINACIÓN DE LA GRILLA
+// ==========================================
+function setupPagination() {
+
+    const images =
+        Array.from(
+            imageGrid.querySelectorAll(
+                ".image-card"
+            )
+        );
+
+    const totalPages =
+        Math.ceil(
+            images.length /
+            IMAGES_PER_PAGE
+        );
+
+
+    function showPage(page) {
+
+        currentPage = page;
+
+        const start =
+            (page - 1) *
+            IMAGES_PER_PAGE;
+
+        const end =
+            start +
+            IMAGES_PER_PAGE;
+
+
+        images.forEach(
+            (image, index) => {
+
+                image.hidden =
+                    !(
+                        index >= start &&
+                        index < end
+                    );
+
+            }
+        );
+
+
+        renderPagination(
+            totalPages
+        );
+
+    }
+
+
+    function renderPagination(
+        totalPages
+    ) {
+
+        pagination.innerHTML = "";
+
+
+        if (totalPages <= 1) {
+            return;
+        }
+
+
+        // BOTÓN ANTERIOR
+
+        const previous =
+            document.createElement(
+                "button"
+            );
+
+        previous.textContent =
+            "‹";
+
+        previous.className =
+            "pagination-button";
+
+        previous.disabled =
+            currentPage === 1;
+
+        previous.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    currentPage > 1
+                ) {
+
+                    showPage(
+                        currentPage - 1
+                    );
+
+                }
+
+            }
+        );
+
+        pagination.appendChild(
+            previous
+        );
+
+
+        // NÚMEROS DE PÁGINA
+
+        for (
+            let page = 1;
+            page <= totalPages;
+            page++
+        ) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.textContent =
+                page;
+
+            button.className =
+                "pagination-button";
+
+
+            if (
+                page === currentPage
+            ) {
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    showPage(page);
+
+                }
+            );
+
+
+            pagination.appendChild(
+                button
+            );
+
+        }
+
+
+        // BOTÓN SIGUIENTE
+
+        const next =
+            document.createElement(
+                "button"
+            );
+
+        next.textContent =
+            "›";
+
+        next.className =
+            "pagination-button";
+
+        next.disabled =
+            currentPage === totalPages;
+
+
+        next.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    currentPage <
+                    totalPages
+                ) {
+
+                    showPage(
+                        currentPage + 1
+                    );
+
+                }
+
+            }
+        );
+
+
+        pagination.appendChild(
+            next
+        );
+
+    }
+
+
+    showPage(1);
+}
+
+
 
 // ==========================================
 // MOSTRAR ERROR
@@ -467,7 +576,7 @@ function openAnalysisModal() {
 
 
     // ======================================
-    // ESPERAR 40 SEGUNDOS
+    // ESPERAR xsss SEGUNDOS que se configuren
     // ======================================
 
     setTimeout(
@@ -482,6 +591,9 @@ function openAnalysisModal() {
         },
         MINIMUM_ANALYSIS_TIME
     );
+    
+    //Se pone para que después del timeout se pueda mostrar el resultado si ya regresó del servicio
+    videoFinished = true;
 }
 
 // ==========================================
@@ -708,6 +820,7 @@ async function analyzeImage() {
         const data =
             await response.json();
 
+        console.log("Respondió el servicio");
 
         if (!response.ok) {
 
@@ -946,4 +1059,5 @@ analysisModalOverlay.addEventListener(
 // INICIALIZAR
 // ==========================================
 
-createCarousel();
+setupImageSelection();
+setupPagination();

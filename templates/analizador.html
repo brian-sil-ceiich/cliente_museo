@@ -269,50 +269,45 @@
 
 
         <!-- ==================================
-             CARRUSEL
+             Grid
              ================================== -->
 
-        <div class="carousel"
-                    id="carousel">
+        
+        <div class="image-gallery">
 
-            <button
-                type="button"
-                class="carousel-button"
-                id="prev-button"
-                aria-label="Fotografías anteriores"
+            <div
+                id="image-grid"
+                class="image-grid"
             >
-                ❮
-            </button>
+                {% for image in images %}
 
+                    <div
+                        class="image-card"
+                        data-index="{{ loop.index0 }}"
+                    >
 
-            <div class="carousel-track-container">
+                        <img
+                            src="{{ url_for('static', filename='images/' + image.filename) }}"
+                            alt="{{ image.filename }}"
+                            class="gallery-image"
+                            data-filename="{{ image.filename }}"
+                        >
 
-                <div
-                    class="carousel-track"
-                    id="carousel-track"
-                >
+                    </div>
 
-                    <!--
-                        Las 20 imágenes se generan
-                        dinámicamente desde app.js.
-                    -->
-
-                </div>
+                {% endfor %}
 
             </div>
 
 
-            <button
-                type="button"
-                class="carousel-button"
-                id="next-button"
-                aria-label="Fotografías siguientes"
-            >
-                ❯
-            </button>
+            <!-- PAGINACIÓN -->
+
+            <div
+                id="pagination"
+                class="pagination"
+            ></div>
 
         </div>
-
 
 
         <!-- ==================================
@@ -415,7 +410,7 @@
                         playsinline
                     >
                         <source
-                            src="{{ url_for('static', filename='videos/explicacion_2.mp4') }}"
+                            src="{{ url_for('static', filename='videos/explicacion_3.mp4') }}"
                             type="video/mp4"
                         >
 
