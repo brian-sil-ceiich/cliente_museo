@@ -582,6 +582,8 @@ function openAnalysisModal() {
     setTimeout(
         () => {
             minimumTimeFinished = true;
+            //Se pone para que después del timeout se pueda mostrar el resultado si ya regresó del servicio
+            videoFinished = true;
 
             // Cortar video
             analysisVideo.pause();
@@ -592,8 +594,6 @@ function openAnalysisModal() {
         MINIMUM_ANALYSIS_TIME
     );
     
-    //Se pone para que después del timeout se pueda mostrar el resultado si ya regresó del servicio
-    videoFinished = true;
 }
 
 // ==========================================
