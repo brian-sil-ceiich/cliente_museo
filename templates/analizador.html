@@ -49,7 +49,7 @@
 
         <path d="M205 190 L260 225 L315 225"></path>
 
-        <rect  class="node-3"x="315" y="218" width="14" height="14"></rect>
+        <rect  class="node-3" x="315" y="218" width="14" height="14"></rect>
 
 
         <!-- ICONO 2 → RAMAS -->
@@ -205,17 +205,6 @@
 
     </div>
 
-    <section class="hero">
-
-        <p class="subtitle">
-
-            Selecciona una fotografía y permite que nuestra
-            inteligencia artificial analice su contenido,
-            edad aparente y expresión emocional.
-
-        </p>
-
-    </section>
 
 
 
@@ -228,13 +217,13 @@
         id="analysis-section"
     >
          <img
-        src="{{ url_for('static', filename='images/mod5.png') }}"
+        src="{{ url_for('static', filename='images/iconos/mod5.png') }}"
         class="corner-decoration corner-top-right"
         alt=""
     >
 
     <img
-        src="{{ url_for('static', filename='images/mod6.png') }}"
+        src="{{ url_for('static', filename='images/iconos/mod6.png') }}"
         class="corner-decoration corner-bottom-left"
         alt=""
     >
@@ -244,13 +233,14 @@
             <div>
 
 
-                <h2>
+                <h2 class = "title">
                     Elige una fotografía
                 </h2>
 
                 <p class="subtitle">
-                    Explora las fotografías disponibles
-                    y selecciona una para comenzar.
+                    Elige una fotografía del catálogo y permite que la inteligencia Artificial analice y 
+                    determine la edad y expresión emocional, para que reflexionemos cómo y qué interpreta la 
+                    IA sobre estas imágenes.
                 </p>
 
             </div>
@@ -410,7 +400,7 @@
                         playsinline
                     >
                         <source
-                            src="{{ url_for('static', filename='videos/explicacion_3.mp4') }}"
+                            src="{{ url_for('static', filename='videos/explicacion_5.mp4') }}"
                             type="video/mp4"
                         >
 
@@ -556,7 +546,7 @@
 
             <div class="feedback-group">
 
-                <h4>Edad</h4>
+                <h4 class="title">Edad</h4>
 
                 <label>
                     <input
@@ -591,7 +581,7 @@
 
             <div class="feedback-group">
 
-                <h4>Emoción</h4>
+                <h4 class ="title">Emoción</h4>
 
                 <label>
                     <input

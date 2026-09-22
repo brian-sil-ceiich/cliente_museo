@@ -832,16 +832,24 @@ h1 {
 }
 
 
-h2 {
+.title {
     font-family: 'Inclusive Sans', sans-serif;
+    font-size: 24px;
+    color: #017166;
 }
 
+.titulo {
+    font-family: 'CS Claire Mono', monospace;
+    font-size:30px;
+    color: #a54281;
+}
 
 .subtitle {
     font-family: 'CS Claire Mono', monospace;
     margin: 0 0 30px;
+    font-size: 20px;
 
-    color: #64748b;
+    color: #2c3a86;
 
     line-height: 1.6;
 }
@@ -950,7 +958,7 @@ textarea:focus {
    ========================================== */
 .video-container {
     width: 100%;
-    max-width: 950px;
+    max-width: 824px;
 
     margin: 45px auto;
 
@@ -2250,12 +2258,9 @@ pre {
 
 
 .neural-lines path {
-    fill: none;
-
+    fill: transparent;
     stroke: rgba(71, 88, 164, 0.22);
-
     stroke-width: 2;
-
     stroke-linecap: round;
     stroke-linejoin: round;
 }
@@ -2268,10 +2273,6 @@ pre {
 
 .floating-icon {
     z-index: 2;
-}
-
-.neural-lines rect {
-    stroke: none;
 }
 
 .node-1 {

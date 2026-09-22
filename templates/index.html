@@ -220,27 +220,23 @@
 
 <main class="container">
 
-    <section class="hero" style="padding-top: 40px;">
-        <div align="center"><h1>
-            Descubre lo que hay en una imagen.
+    <section style="padding-top: 40px;">
+        <div align="center"><h1 class="titulo">
+            ¿Te imaginas cómo la IA interpreta una imagen?
         </h1></div>
     </section>
 
     <section class="video-container">
-        <iframe
-            class="home-video"
-            src="https://www.youtube.com/embed/vT40NJm94zg?si=LxGfos8nonDautkB"
-            title="Video"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-        </iframe>
+        <img
+                src="{{ url_for('static', filename='videos/ceiich_pequenio.gif') }}"
+                alt="CEIICH"
+            >
     </section>
 
     <div class="home-action">
         <a href="/analizador" class="enter-button">
             <span class="enter-button-text">
-                ENTRAR
+                DESCÚBRELO
             </span>
         </a>
     </div>
