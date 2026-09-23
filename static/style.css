@@ -1323,17 +1323,13 @@ textarea:focus {
 
 .preview-container {
     margin: 25px 0;
-
     padding: 15px;
-
-    text-align: center;
-
-    background:
-        rgba(248, 250, 252, 0.85);
-
+    background: rgba(248, 250, 252, 0.85);
     border-radius: 10px;
 
-    border: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -2141,6 +2137,9 @@ pre {
 
 .modal-result-photo {
     min-width: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-result-info {
