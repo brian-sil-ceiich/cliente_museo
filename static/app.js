@@ -628,6 +628,40 @@ function checkAnalysisFinished() {
 
 }
 
+function formatearTextoResultado(texto){
+    const campos = ['EDAD', 'EMOCIÓN', 'PROFESIÓN'];
+
+    // Busca cada campo y captura su contenido hasta el siguiente número.
+    const regex = /(\d+)\.\s*(EDAD|EMOCIÓN|PROFESIÓN)\s*-\s*(.*?)(?=\s*\d+\.\s*(?:EDAD|EMOCIÓN|PROFESIÓN)\s*-|$)/gis;
+
+    const resultados = [];
+    let match;
+
+    while ((match = regex.exec(texto)) !== null) {
+        const campo = match[2].toUpperCase();
+        const contenido = match[3].trim();
+
+        resultados.push(`${match[1]}. ${campo} - ${contenido}`);
+        console.log(
+            "Entra a While de formatear"
+        );
+    }
+
+    // Si no encontró ninguno de los campos, no hacer nada
+    if (resultados.length === 0) {
+        console.log(
+            "No encontró los textos"
+        );
+        return texto;
+    }
+
+    resultados.forEach((elemento, indice) => {
+        console.log(`Parrafo: ${elemento}, Índice: ${indice}`);
+    });
+
+    return resultados.join('\n');
+}
+
 
 // ==========================================
 // MOSTRAR RESULTADO EN MODAL
@@ -638,8 +672,7 @@ function showModalResult(data) {
     modalProcessing.hidden = true;
     modalResult.hidden = false;
 
-    modalSummary.textContent =
-        data.analysis;
+    modalSummary.textContent = formatearTextoResultado(data.analysis);
 
     modalOllamaTime.textContent =
         parseInt(parseFloat(data.ollama_time));
