@@ -119,12 +119,6 @@ const modalOllamaTime =
     );
 
 
-const modalClientTime =
-    document.getElementById(
-        "modal-client-time"
-    );
-
-
 // const closeAnalysisModal =
 //     document.getElementById(
 //         "close-analysis-modal"
@@ -172,7 +166,7 @@ let analysisFinished = false;
 let analysisData = null;
 let minimumTimeFinished = false;
 let analysisStartTime = null;
-const MINIMUM_ANALYSIS_TIME = 61000;
+const MINIMUM_ANALYSIS_TIME = 64000;
 
 
 
@@ -648,10 +642,7 @@ function showModalResult(data) {
         data.analysis;
 
     modalOllamaTime.textContent =
-        data.ollama_time;
-
-    modalClientTime.textContent =
-        data.client_time;
+        parseInt(parseFloat(data.ollama_time));
 
         // ======================================
     // GUARDAR ID DE LA PETICIÓN
@@ -672,7 +663,7 @@ function showModalResult(data) {
     feedbackForm.hidden = false;
     // analysisModalContent.style.width = "1250px";
     /// BAMS descomentar si se quiere video en Horizontal
-    document.getElementsByClassName('analysis-modal-content')[0].style.width = "1250px";
+    document.getElementsByClassName('analysis-modal-content')[0].style.width = "1950px";
 
     // Detener video
     analysisVideo.pause();
@@ -723,7 +714,7 @@ function showResult(data) {
         data.ollama_time;
 
     clientTime.textContent =
-        data.client_time;
+        int(float(data.client_time));
 
     // jsonResult.textContent =
     //     JSON.stringify(

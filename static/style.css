@@ -854,6 +854,16 @@ h1 {
     line-height: 1.6;
 }
 
+.result-ai {
+    font-family: 'CS Claire Mono', monospace;
+    margin: 0 0 30px;
+    font-size: 40px;
+
+    color: #42c56e;
+
+    line-height: 1.6;
+}
+
 
 /* ==========================================
    CARD
