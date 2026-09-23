@@ -691,8 +691,8 @@ function closeModal() {
 
     analysisVideo.pause();
 
-    // window.location.replace("http://localhost:5000/");
-    window.location.replace("http://132.248.246.161/");
+    window.location.replace("http://localhost:5000/");
+    // window.location.replace("http://132.248.246.161/");
 
 }
 
