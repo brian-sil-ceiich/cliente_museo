@@ -2360,3 +2360,22 @@ pre {
 .footer-images > img:last-child {
     margin-left: -45px;
 }
+
+.feedback-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.feedback-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback-group .title {
+    margin-bottom: 15px;
+}
+
+.feedback-group label {
+    margin-bottom: 10px;
+}
