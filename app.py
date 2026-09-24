@@ -246,10 +246,12 @@ def analyze_feedback():
     id_peticion = request.form.get("id_peticion")
     edad = request.form.get("edad")
     emocion = request.form.get("emocion")
+    profesion = request.form.get("profesion")
 
     print("ID petición:", id_peticion)
     print("Feedback edad:", edad)
     print("Feedback emoción:", emocion)
+    print("Feedback profesión:", profesion)
 
     # Guardar en BD...
     print("Antes del Try")
@@ -265,7 +267,8 @@ def analyze_feedback():
             data={
                 "id_peticion": id_peticion,
                 "edad": edad,
-                "emocion": emocion
+                "emocion": emocion,
+                "profesion": profesion
             },
             timeout=240,
         )

@@ -922,10 +922,15 @@ feedbackForm.addEventListener(
                 'input[name="emocion"]:checked'
             );
 
-        if (!edad || !emocion) {
+        const profesion =
+            document.querySelector(
+                'input[name="profesion"]:checked'
+            );
+
+        if (!edad || !emocion || !profesion) {
 
             showError(
-                "Debes responder ambas evaluaciones."
+                "Debes responder todas las evaluaciones."
             );
 
             return;
@@ -955,12 +960,18 @@ feedbackForm.addEventListener(
                 emocion.value
             );
 
+            formData.append(
+                "profesion",
+                profesion.value
+            );
+
             console.log(
                 "Enviando feedback:",
                 {
                     id_peticion: id_peticion,
                     edad: edad.value,
-                    emocion: emocion.value
+                    emocion: emocion.value,
+                    profesion: profesion.value
                 }
             );
             
