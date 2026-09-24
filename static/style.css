@@ -668,9 +668,6 @@ body::before {
 .header {
     width: 100%;
 
-    background:
-        rgba(255, 255, 255, 0.90);
-
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
@@ -686,8 +683,8 @@ body::before {
 
 
 .header-container {
-    width: calc(100% - 80px);
-    max-width: 1600px;
+    width: 100%;
+    max-width: 2000px;
 
     min-height: 90px;
 
@@ -777,6 +774,10 @@ body::before {
     margin-left: auto;
 }
 
+.enter-button-icon {
+    font-size: 60px;
+}
+
 
 .header-link {
     color: #24324a;
@@ -813,8 +814,8 @@ body::before {
 
 .container {
     width: min(
-        1100px,
-        calc(100% - 40px)
+        2000px,
+        calc(100% - 10px)
     );
 
     margin: 40px auto;
@@ -829,6 +830,29 @@ h1 {
     font-size: 32px;
     color: #14213d;
     letter-spacing: -0.5px;
+}
+
+h3 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-align: center;
+    unicode-bidi: isolate;
+}
+
+
+h4 {
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
 }
 
 
@@ -847,7 +871,7 @@ h1 {
 .subtitle {
     font-family: 'CS Claire Mono', monospace;
     margin: 0 0 30px;
-    font-size: 20px;
+    font-size: 35px;
 
     color: #2c3a86;
 
@@ -1107,7 +1131,7 @@ textarea:focus {
     display: grid;
 
     grid-template-columns:
-        repeat(5, 1fr);
+        repeat(7, 1fr);
 
     gap: 18px;
 
@@ -1334,16 +1358,11 @@ textarea:focus {
 
 
 #image-preview {
-    display: block;
-
-    max-width: 100%;
-    max-height: 420px;
-
-    margin: 0 auto;
-
-    border-radius: 8px;
-
+    
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    display: block;
 }
 
 
@@ -1536,7 +1555,7 @@ button {
 
     gap: 25px;
 
-    margin-bottom: 25px;
+    margin-bottom: 0px;
 
     color: #64748b;
 }
@@ -1583,9 +1602,6 @@ pre {
 
 .footer {
     width: 100%;
-
-    background:
-        rgba(255, 255, 255, 0.90);
     
 
     box-shadow:
@@ -2009,11 +2025,11 @@ pre {
 
     color: #172033;
 
-    font-size: 20px;
+    font-size: 30px;
 
     font-weight: 600;
 
-    line-height: 1.6;
+    line-height: 1.2;
 
     text-align: left;
     
@@ -2170,10 +2186,10 @@ pre {
 //////////////////////////////////////////////*/
 .home-logos {
     width: 100%;
-    max-width: 950px;
+    max-width: 1400px;
     margin: 0 auto 15px;
     position: relative;
-    height: 175px;
+    height: 100px;
 }
 
 .home-logo-iia {
@@ -2384,9 +2400,9 @@ pre {
 }
 
 .feedback-group .title {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .feedback-group label {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }

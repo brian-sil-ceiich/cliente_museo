@@ -180,7 +180,7 @@
                 <span class="enter-button-icon">
                     🏠
                 </span>
-                Inicio
+                
             </a>
         </nav>
 
@@ -239,7 +239,7 @@
 
                 <p class="subtitle">
                     Elige una fotografía del catálogo y permite que la inteligencia Artificial analice y 
-                    determine la edad y expresión emocional, para que reflexionemos cómo y qué interpreta la 
+                    determine la edad, expresión emocional y profesión, para que reflexionemos cómo y qué interpreta la 
                     IA sobre estas imágenes.
                 </p>
 
@@ -299,35 +299,7 @@
 
         </div>
 
-
-        <!-- ==================================
-             PROMPT
-             ================================== -->
-
-        <div class="prompt-section">
-
-            <div class="prompt-header">
-
-                <label for="prompt">
-                    ¿Qué quieres analizar?
-                </label>
-
-                <span>
-                    Prompt
-                </span>
-
-            </div>
-
-
-            <textarea
-                id="prompt"
-                placeholder="Escribe qué quieres analizar..."
-            >Analiza la imagen y determina las edad y la emoción de la persona visible: 1. EDAD - Estima el rango de edad en años que aparenta tener la persona, quiero que me lo digas en años. 2. EMOCIÓN - Determina la emoción que parece expresar la persona mediante su expresión facial. 3. PROFESIÓN - Determina la posible profesión de la persona basada en su edad, vestimenta y fondo de la imagen - No respondas neutral. REGLAS: - Responde en español. - No agregues explicaciones. - No utilices Markdown. - Responde únicamente con la edad, la emoción y profesión.</textarea>
-
-        </div>
-
-
-
+        
         <button
             type="button"
             id="analyze-button"
@@ -343,6 +315,38 @@
             </span>
 
         </button>
+
+
+        <!-- ==================================
+             PROMPT
+             ================================== -->
+
+        <div class="prompt-section">
+
+            <!-- <div class="prompt-header">
+
+                <label for="prompt">
+                    ¿Qué quieres analizar?
+                </label>
+
+                <span>
+                    Prompt
+                </span>
+
+            </div> -->
+
+
+            <br>
+            <textarea
+                id="prompt"
+                placeholder="Escribe qué quieres analizar..."
+                
+            >Analiza la imagen y determina las edad y la emoción de la persona visible: 1. EDAD - Estima el rango de edad en años que aparenta tener la persona, quiero que me lo digas en años. 2. EMOCIÓN - Determina la emoción que parece expresar la persona mediante su expresión facial. 3. PROFESIÓN - Determina la posible profesión de la persona basada en su edad, vestimenta y fondo de la imagen - No respondas neutral. REGLAS: - Responde en español. - No agregues explicaciones. - No utilices Markdown. - Responde únicamente con la edad, la emoción y profesión.</textarea>
+
+        </div>
+
+
+
 
 
     </section>
@@ -528,7 +532,7 @@
 
         <form id="feedback-form" class="feedback-form">
 
-            <h3>¿Qué tan satisfecho estás con la respuesta?</h3>
+            <h3>¿Qué tan acuerdo estás con la respuesta de OLLAMA?</h3>
 
             <div class="feedback-columns">
 

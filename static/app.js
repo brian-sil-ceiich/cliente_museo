@@ -166,7 +166,7 @@ let analysisFinished = false;
 let analysisData = null;
 let minimumTimeFinished = false;
 let analysisStartTime = null;
-const MINIMUM_ANALYSIS_TIME = 64000;
+const MINIMUM_ANALYSIS_TIME = 47000;
 
 
 
@@ -239,7 +239,7 @@ function setupImageSelection() {
 // CONFIGURACIÓN DE GRILLA
 // ==========================================
 
-const IMAGES_PER_PAGE = 15;
+const IMAGES_PER_PAGE = 14;
 
 const imageGrid =
     document.getElementById(
