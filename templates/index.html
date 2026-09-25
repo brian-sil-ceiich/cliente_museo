@@ -234,7 +234,7 @@
     </section>
 
     <div class="home-action">
-        <a href="/analizador" class="enter-button">
+        <a href="/analizador" class="enter-button" id="btnAnalizador">
             <span class="enter-button-text">
                 DESCÚBRELO
             </span>
@@ -303,6 +303,30 @@
     </div>
 
 </footer>
+
+<script>
+    const btnAnalizador = document.getElementById("btnAnalizador");
+
+    btnAnalizador.addEventListener("click", function () {
+
+        let contador = Number(
+            localStorage.getItem("contadorVideo") || 0
+        );
+
+        console.log("Contador antes:", contador);
+
+        // Guardamos el video que se va a reproducir
+        localStorage.setItem("videoActual", contador);
+
+        // Incrementamos para el siguiente clic
+        contador = (contador + 1) % 3;
+
+        localStorage.setItem("contadorVideo", contador);
+
+        console.log("Video actual:", localStorage.getItem("videoActual"));
+        console.log("Contador siguiente:", contador);
+    });
+</script>
 
 
 </body>

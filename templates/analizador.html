@@ -404,7 +404,8 @@
                         playsinline
                     >
                         <source
-                            src="{{ url_for('static', filename='videos/explicacion_5_2.mp4') }}"
+                            id="analysis-video-source"
+                            src=""
                             type="video/mp4"
                         >
 
@@ -832,6 +833,42 @@
 
 </footer>
 
+<script>
+
+    const videos = [
+        "{{ url_for('static', filename='videos/explicacion_5.mp4') }}",
+        "{{ url_for('static', filename='videos/explicacion_5_2.mp4') }}",
+        "{{ url_for('static', filename='videos/explicacion_4.mp4') }}"
+    ];
+
+    const video = document.getElementById("analysis-video");
+    const source = document.getElementById("analysis-video-source");
+
+    // Obtener qué video corresponde
+    const videoActual = Number(
+        localStorage.getItem("videoActual") || 0
+    );
+
+    console.log("VIDEO ACTUAL:", videoActual);
+    console.log("ARCHIVO:", videos[videoActual]);
+
+    // Cambiar el source
+    source.src = videos[videoActual];
+
+    // Recargar el video
+    video.load();
+
+    // Reproducir
+    // video.play().catch(error => {
+    //     console.log("No se pudo reproducir automáticamente:", error);
+    // });
+
+    // Al terminar regresar a pantalla 1
+    video.addEventListener("ended", function () {
+        window.location.href = "/";
+    });
+
+</script>
 
 <script
     src="{{ url_for('static', filename='app.js') }}"
