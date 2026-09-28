@@ -233,34 +233,25 @@ body::before {
 
 
 /* ==========================================
-   MANCHA ROSA
+   LOGO IA
    ========================================== */
 
-.shape-5 {
-    width: 360px;
-    height: 430px;
+.shape-5-image {
+    position: absolute;
 
-    right: 18%;
-    bottom: 5%;
+    width: 400px;
+    height: auto;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(165, 66, 129, 0.42),
-            rgba(165, 66, 129, 0.10)
-        );
+    right: 15%;
+    bottom: 16%;
 
-    border-radius:
-        58% 42% 67% 33%
-        /
-        32% 63% 37% 68%;
+    transform: rotate(0deg);
 
-    transform: rotate(-20deg);
+    opacity: 0.25;
 
-    animation:
-        abstractFloat5 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
 }
-
 /* ==========================================
    PIXEL DUST
    ========================================== */
@@ -755,7 +746,7 @@ body::before {
     width: 1px;
     height: 45px;
 
-    background: #cbd5e1;
+    background: #0b3042;
 
     flex-shrink: 0;
 }
@@ -871,7 +862,7 @@ h4 {
 .subtitle {
     font-family: 'CS Claire Mono', monospace;
     margin: 0 0 30px;
-    font-size: 35px;
+    font-size: 30px;
 
     color: #2c3a86;
 
@@ -1066,9 +1057,10 @@ background:
     linear-gradient(
         135deg,
         #0b3042 0%,
-        #075462 30%,
-        #017166 50%,
-        #4758a4 75%,
+        #4758a4 25%,
+        #a54281 50%,
+        #a54281 65%,
+        #017166 82%,
         #0b3042 100%
     );
 
@@ -2208,7 +2200,14 @@ pre {
     max-width: 1400px;
     margin: 0 auto 15px;
     position: relative;
-    height: 200px;
+    height: 350px;
+}
+.logo-mira {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 15px;
+    position: relative;
+    height: 151px;
 }
 
 .home-logo-iia {
@@ -2225,7 +2224,7 @@ pre {
     left: 50%;
     transform: translateX(-50%);
     bottom: -70px;
-    width: 400px;
+    width: 600px;
     height: auto;
     display: block;
     padding-top: 100px;
@@ -2235,7 +2234,7 @@ pre {
     left: 50%;
     transform: translateX(-50%);
     bottom: 0px;
-    width: 400px;
+    width: 450px;
     height: auto;
     display: block;
 }
@@ -2369,27 +2368,51 @@ pre {
 .footer-images {
     position: absolute;
 
+    left: -200px;
     top: 50%;
-    left: 38%;
 
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
 
     display: flex;
     align-items: center;
-    justify-content: center;
 
-    gap: 45px;
+    gap: 20px;
 
     white-space: nowrap;
 }
 
 
 .footer-images-first {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
     display: flex;
     align-items: flex-end;
-    gap: 0;
+    justify-content: center;
+
+    gap: 25px;
+
+    white-space: nowrap;
 }
 
+.footer-images-first img {
+    display: block;
+
+    width: auto;
+    height: 65px;
+
+    object-fit: contain;
+
+    opacity: 0.95;
+}
+
+.footer-images-first img:nth-child(2) {
+    height: 32px;
+}
 
 .footer-images img {
     display: block;
@@ -2400,12 +2423,6 @@ pre {
     object-fit: contain;
 
     opacity: 0.85;
-}
-.footer-images-first img:nth-child(2) {
-    height: 32px;
-}
-.footer-images > img:last-child {
-    margin-left: -45px;
 }
 
 .feedback-columns {
@@ -2438,7 +2455,7 @@ pre {
 .entry-hand {
     position: absolute;
 
-    width: 130px;
+    width: 160px;
     height: auto;
 
     pointer-events: none;
@@ -2489,4 +2506,19 @@ pre {
     50% {
         transform: translateX(-10px);
     }
+}
+/* MARCA DE AGUA */
+
+.marca-agua {
+    position: fixed;
+    right: 24px;
+    top: 58%;
+
+    width: 120px;
+    height: auto;
+
+    opacity: 0.18;
+
+    pointer-events: none;
+    z-index: 3;
 }
