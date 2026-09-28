@@ -871,7 +871,7 @@ h4 {
 
 .result-ai {
     font-family: 'CS Claire Mono', monospace;
-    margin: 0 0 30px;
+    margin: 0 60px 30px;
     font-size: 40px;
 
     color: #42c56e;
@@ -2522,3 +2522,82 @@ pre {
     pointer-events: none;
     z-index: 3;
 }
+
+/* ==========================================
+   RELOJ DE CUENTA REGRESIVA
+   ========================================== */
+
+.page-countdown {
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #4758a4;
+
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    z-index: 9999;
+
+    box-sizing: border-box;
+}
+
+#page-countdown-value {
+    line-height: 1;
+}
+
+/* ==========================================
+   TIMER DEL RESULTADO DE LA MODAL
+   ========================================== */
+
+.analysis-modal-content {
+    position: relative;
+}
+
+
+.modal-countdown {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    z-index: 100;
+    
+    box-sizing: border-box;
+}
+
+
+#modal-countdown-value {
+    line-height: 1;
+}
+

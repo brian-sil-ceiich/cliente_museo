@@ -168,6 +168,24 @@ let minimumTimeFinished = false;
 let analysisStartTime = null;
 const MINIMUM_ANALYSIS_TIME = 50000;
 
+// ==========================================
+// TIMER DEL RESULTADO DE LA MODAL
+// ==========================================
+
+const modalCountdown =
+    document.getElementById(
+        "modal-countdown"
+    );
+
+const modalCountdownValue =
+    document.getElementById(
+        "modal-countdown-value"
+    );
+
+let modalCountdownSeconds = 25;
+
+let modalCountdownInterval = null;
+
 
 
 // ==========================================
@@ -700,6 +718,12 @@ function showModalResult(data) {
 
     // Detener video
     analysisVideo.pause();
+
+    // ======================================
+    // INICIAR TIMER DEL RESULTADO
+    // ======================================
+
+    startModalCountdown();
 }
 
 
@@ -782,7 +806,11 @@ async function index() {
 async function analyzeImage() {
 
     hideError();
+    // ======================================
+    // DETENER TIMER PRINCIPAL
+    // ======================================
 
+    stopPageCountdown();
 
     if (!selectedImage) {
 
@@ -1101,6 +1129,167 @@ document.addEventListener('touchstart', function(e) {
 document.addEventListener('gesturestart', function(e) {
     e.preventDefault(); // Prevent zoom gesture
 }, { passive: false });
+
+
+
+// ==========================================
+// RELOJ DE CUENTA REGRESIVA DE LA PÁGINA
+// ==========================================
+
+const pageCountdown =
+    document.getElementById(
+        "page-countdown"
+    );
+
+const pageCountdownValue =
+    document.getElementById(
+        "page-countdown-value"
+    );
+
+let pageCountdownSeconds = 25;
+
+let pageCountdownInterval = null;
+
+
+// ==========================================
+// INICIAR RELOJ DE LA PÁGINA
+// ==========================================
+
+function startPageCountdown() {
+
+    // Reiniciar siempre a 25 segundos
+    pageCountdownSeconds = 60;
+
+    pageCountdownValue.textContent =
+        pageCountdownSeconds;
+
+
+    // Evitar que existan dos intervalos
+    if (pageCountdownInterval) {
+
+        clearInterval(
+            pageCountdownInterval
+        );
+
+    }
+
+
+    pageCountdownInterval =
+        setInterval(
+            () => {
+
+                pageCountdownSeconds--;
+
+                pageCountdownValue.textContent =
+                    pageCountdownSeconds;
+
+
+                // ==================================
+                // LLEGÓ A CERO
+                // ==================================
+
+                if (
+                    pageCountdownSeconds <= 0
+                ) {
+
+                    clearInterval(
+                        pageCountdownInterval
+                    );
+
+                    pageCountdownInterval = null;
+
+                    window.location.href = "/";
+
+                }
+
+            },
+            1000
+        );
+}
+
+// ==========================================
+// DETENER TIMER DE LA PÁGINA
+// ==========================================
+
+function stopPageCountdown() {
+
+    if (pageCountdownInterval) {
+
+        clearInterval(
+            pageCountdownInterval
+        );
+
+        pageCountdownInterval = null;
+
+        // Ocultar el timer
+        pageCountdown.hidden = true;
+    }
+}
+
+// ==========================================
+// INICIAR TIMER DEL RESULTADO
+// ==========================================
+
+function startModalCountdown() {
+
+    // Reiniciar a 25 segundos
+    modalCountdownSeconds = 60;
+
+    modalCountdownValue.textContent =
+        modalCountdownSeconds;
+
+
+    // Evitar timers duplicados
+    if (modalCountdownInterval) {
+
+        clearInterval(
+            modalCountdownInterval
+        );
+
+    }
+
+
+    modalCountdownInterval =
+        setInterval(
+            () => {
+
+                modalCountdownSeconds--;
+
+                modalCountdownValue.textContent =
+                    modalCountdownSeconds;
+
+
+                // ==================================
+                // LLEGÓ A CERO
+                // ==================================
+
+                if (
+                    modalCountdownSeconds <= 0
+                ) {
+
+                    clearInterval(
+                        modalCountdownInterval
+                    );
+
+                    modalCountdownInterval = null;
+
+                    window.location.href = "/";
+
+                }
+
+            },
+            1000
+        );
+}
+
+
+
+// ==========================================
+// INICIAR
+// ==========================================
+
+startPageCountdown();
+
 
 
 // ==========================================
