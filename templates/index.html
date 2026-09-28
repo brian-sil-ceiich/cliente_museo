@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
     <title>Museo UNAM Hoy | Analizador de imágenes</title>
 
@@ -300,6 +300,18 @@
         console.log("Video actual:", localStorage.getItem("videoActual"));
         console.log("Contador siguiente:", contador);
     });
+
+    // Prevent zooming with more than one finger
+    document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault(); // Prevent zoom
+        }
+    }, { passive: false });
+
+    // Prevent pinch zooming with gestures
+    document.addEventListener('gesturestart', function(e) {
+        e.preventDefault(); // Prevent zoom gesture
+    }, { passive: false });
 </script>
 
 

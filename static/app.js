@@ -166,7 +166,7 @@ let analysisFinished = false;
 let analysisData = null;
 let minimumTimeFinished = false;
 let analysisStartTime = null;
-const MINIMUM_ANALYSIS_TIME = 64000;
+const MINIMUM_ANALYSIS_TIME = 50000;
 
 
 
@@ -1089,6 +1089,18 @@ analysisModalOverlay.addEventListener(
 
     }
 );
+
+// Prevent zooming with more than one finger
+document.addEventListener('touchstart', function(e) {
+    if (e.touches.length > 1) {
+        e.preventDefault(); // Prevent zoom
+    }
+}, { passive: false });
+
+// Prevent pinch zooming with gestures
+document.addEventListener('gesturestart', function(e) {
+    e.preventDefault(); // Prevent zoom gesture
+}, { passive: false });
 
 
 // ==========================================
