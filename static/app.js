@@ -257,7 +257,7 @@ function setupImageSelection() {
 // CONFIGURACIÓN DE GRILLA
 // ==========================================
 
-const IMAGES_PER_PAGE = 14;
+const IMAGES_PER_PAGE = 12;
 
 const imageGrid =
     document.getElementById(

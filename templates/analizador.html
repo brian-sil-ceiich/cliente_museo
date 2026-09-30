@@ -35,95 +35,161 @@
 
         <div class="grid"></div>
 
-        <div class="neural-network" aria-hidden="true">
+     <div class="neural-network" aria-hidden="true">
 
-    <svg
-        class="neural-lines"
-        viewBox="0 0 1000 700"
-        preserveAspectRatio="none"
-    >
+            <svg
+                class="neural-lines"
+                viewBox="0 0 1000 700"
+                preserveAspectRatio="none"
+            >
 
-        <!-- ICONO 1 → RAMAS -->
+            <!-- ICONO 1 → RAMAS -->
 
-        <path d="M90 135 L170 120 L215 110"></path>
-        <path d="M90 135 L145 190 L205 190"></path>
+                <path d="M80 135 L100 215 L100 260"></path>
+                <path d="M80 135 L35 190 L35 250"></path>
 
-        <rect class="node-1" x="215" y="103" width="14" height="14"></rect>
-        <rect class="node-2" x="205" y="183" width="14" height="14"></rect>
-
-
-        <!-- RAMA EXTRA -->
-
-        <path d="M205 190 L260 225 L315 225"></path>
-
-        <rect  class="node-3" x="315" y="218" width="14" height="14"></rect>
+                <rect class="node-1" x="90" y="253" width="14" height="14"></rect>
+                <rect class="node-2" x="28" y="243" width="14" height="14"></rect>
 
 
-        <!-- ICONO 2 → RAMAS -->
+                <!-- RAMA EXTRA -->
 
-        <path d="M892 250 L820 220 L765 220"></path>
-        <path d="M892 250 L835 315 L775 315"></path>
+                <path d="M35 250 L50 350 L52 360"></path>
 
-        <rect class="node-4" x="751" y="213" width="14" height="14"></rect>
-        <rect class="node-5" x="761" y="308" width="14" height="14"></rect>
+                <rect class="node-3" x="47" y="353" width="14" height="14"></rect>
+                <!-- ==========================================
+                     ICONO 2 → RAMAS DIAGONALES
+                     ========================================== -->
+<!-- ICONO 2 → RAMAS -->
 
+<path d="M892 250 L872 330 L872 375"></path>
 
-        <!-- RAMA EXTRA -->
+<path d="M892 250 L937 305 L937 365"></path>
 
-        <path d="M775 315 L720 350 L665 350"></path>
+<!-- Nodo 4 -->
+<rect
+    class="node-4"
+    x="865"
+    y="368"
+    width="14"
+    height="14"
+></rect>
 
-        <rect class="node-6" x="651" y="343" width="14" height="14"></rect>
-
-
-        <!-- ICONO 3 → RAMAS -->
-
-        <path d="M120 520 L190 500 L245 500"></path>
-        <path d="M120 520 L175 585 L235 585"></path>
-
-        <rect class="node-7" x="245" y="493" width="14" height="14"></rect>
-        <rect class="node-8" x="235" y="578" width="14" height="14"></rect>
-
-
-        <!-- RAMA EXTRA -->
-
-        <path d="M235 585 L285 620 L345 620"></path>
-
-        <rect class="node-9" x="345" y="613" width="14" height="14"></rect>
-
-    </svg>
-
-
-    <!-- ICONO 1 -->
-
-    <div class="floating-icon icon-1">
-        <img
-            src="{{ url_for('static', filename='images/iconos/+ amarillo.png') }}"
-            alt=""
-        >
-    </div>
+<!-- Nodo 5 -->
+<rect
+    class="node-5"
+    x="930"
+    y="358"
+    width="14"
+    height="14"
+></rect>
 
 
-    <!-- ICONO 2 -->
+<!-- RAMA EXTRA HACIA ABAJO - IZQUIERDA -->
 
-    <div class="floating-icon icon-2">
-        <img
-            src="{{ url_for('static', filename='images/iconos/+ azul.png') }}"
-            alt=""
-        >
-    </div>
+<path d="M872 375 L850 430 L850 475"></path>
+
+<!-- Nodo 6 -->
+<rect
+    class="node-6"
+    x="843"
+    y="468"
+    width="14"
+    height="14"
+></rect>
 
 
-    <!-- ICONO 3 -->
+<!-- RAMA EXTRA HACIA ABAJO - DERECHA -->
 
-    <div class="floating-icon icon-3">
-        <img
-            src="{{ url_for('static', filename='images/iconos/+ verde.png') }}"
-            alt=""
-        >
-    </div>
+<path d="M937 365 L960 420 L960 555"></path>
 
-</div>
+<!-- Nodo 7 -->
+<rect
+    class="node-7"
+    x="953"
+    y="550"
+    width="14"
+    height="14"
+></rect>
+                <!-- ==========================================
+                     ICONO 3 → RAMAS DIAGONALES
+                     ========================================== -->
 
+                <path d="M120 520 L155 475 L215 445"></path>
+
+                <path d="M120 520 L155 565 L215 600"></path>
+
+                <!-- Nodo 7 -->
+                <rect
+                    class="node-7"
+                    x="208"
+                    y="438"
+                    width="14"
+                    height="14"
+                ></rect>
+
+                <!-- Nodo 8 -->
+                <rect
+                    class="node-8"
+                    x="208"
+                    y="593"
+                    width="14"
+                    height="14"
+                ></rect>
+
+
+                <!-- RAMA EXTRA -->
+
+                <path d="M215 600 L270 635 L330 645"></path>
+
+                <!-- Nodo 9 -->
+                <rect
+                    class="node-9"
+                    x="323"
+                    y="638"
+                    width="14"
+                    height="14"
+                ></rect>
+
+            </svg>
+
+
+            <!-- ==========================================
+                 ICONO 1
+                 ========================================== -->
+
+            <div class="floating-icon icon-1">
+                <img
+                    src="{{ url_for('static', filename='images/iconos/+ amarillo.png') }}"
+                    alt=""
+                >
+            </div>
+
+
+            <!-- ==========================================
+                 ICONO 2
+                 ========================================== -->
+
+            <div class="floating-icon icon-2">
+                <img
+                    src="{{ url_for('static', filename='images/iconos/+ azul.png') }}"
+                    alt=""
+                >
+            </div>
+
+
+            <!-- ==========================================
+                 ICONO 3
+                 ========================================== -->
+
+            <div class="floating-icon icon-3">
+                <img
+                    src="{{ url_for('static', filename='images/iconos/+ verde.png') }}"
+                    alt=""
+                >
+            </div>
+
+        </div>
       
         <div class="floating-shape shape-1">
             <div class="pixel-dust"></div>
@@ -150,8 +216,6 @@
 
 <!-- ==========================================
      HEADER
-     ========================================== -->
-
    <header class="header">
 
     <div class="header-container">
@@ -166,9 +230,8 @@
         </nav>
 
     </div>
-
 </header>
-
+  ========================================== -->
 
 
 <!-- ==========================================
@@ -184,9 +247,6 @@
             alt="mira"
         >
     </div>
-
-
-
 
     <!-- ==========================================
          ANALIZADOR
@@ -234,7 +294,6 @@
             </div> -->
 
         </div>
-
 
 
         <!-- ==================================
@@ -824,6 +883,13 @@
                 alt=""
             >
 
+        </div>
+        <div class="footer-link-right">
+            <a href="/">
+                <span class="enter-button-icon">
+                            🏠
+                </span>
+            </a>
         </div>
 
     </div>

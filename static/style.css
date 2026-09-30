@@ -247,7 +247,7 @@ body::before {
 
     transform: rotate(0deg);
 
-    opacity: 0.4;
+    opacity: 0.45;
 
     pointer-events: none;
     z-index: 1;
@@ -677,7 +677,7 @@ body::before {
     width: 100%;
     max-width: 2000px;
 
-    min-height: 90px;
+    max-height: 60px;
 
     margin: 0 auto;
 
@@ -805,7 +805,7 @@ body::before {
 
 .container {
     width: min(
-        2000px,
+        1585px,
         calc(100% - 10px)
     );
 
@@ -849,7 +849,7 @@ h4 {
 
 .title {
     font-family: 'Inclusive Sans', sans-serif;
-    font-size: 24px;
+    font-size: 28px;
     color: #017166;
 }
 
@@ -862,7 +862,7 @@ h4 {
 .subtitle {
     font-family: 'CS Claire Mono', monospace;
     margin: 0 0 30px;
-    font-size: 30px;
+    font-size: 25px;
 
     color: #2c3a86;
 
@@ -1142,7 +1142,7 @@ animation: button-color-flow 3s ease-in-out infinite;
     display: grid;
 
     grid-template-columns:
-        repeat(7, 1fr);
+        repeat(6, 1fr);
 
     gap: 18px;
 
@@ -1158,6 +1158,7 @@ animation: button-color-flow 3s ease-in-out infinite;
 .image-card {
 
     aspect-ratio: 1 / 1;
+     max-width: 250px;
 
     overflow: hidden;
 
@@ -2207,7 +2208,7 @@ pre {
     max-width: 1400px;
     margin: 0 auto 15px;
     position: relative;
-    height: 151px;
+    height: 152px;
 }
 
 .home-logo-iia {
@@ -2425,6 +2426,32 @@ pre {
     opacity: 0.85;
 }
 
+.footer-link-right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.footer-link-right a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-link-right .enter-button-icon {
+    font-size: 45px;
+    line-height: 1;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.footer-link-right a:hover .enter-button-icon {
+    transform: scale(1.12);
+}
+
 .feedback-columns {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2466,7 +2493,7 @@ pre {
 /* MANITA IZQUIERDA */
 
 .entry-hand-left {
-    right: calc(62% + 5px);
+    right: calc(64% + 5px);
 
     animation: hand-point-left 1.2s ease-in-out infinite;
 }
@@ -2475,7 +2502,7 @@ pre {
 /* MANITA DERECHA */
 
 .entry-hand-right {
-    left: calc(62% + 5px);
+    left: calc(64% + 5px);
 
     animation: hand-point-right 1.2s ease-in-out infinite;
 }
@@ -2526,23 +2553,137 @@ pre {
     align-items: center;
     justify-content: center;
 
-    background: #4758a4;
+    color: #111111;
 
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-
-    color: white;
-
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
 
     z-index: 9999;
 
     box-sizing: border-box;
+
+    /* Sin fondo */
+    background: transparent;
+
+    border: none;
+
+    overflow: visible;
 }
 
+/* Vidrio del reloj de arena */
+.page-countdown::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 5px;
+
+    width: 43px;
+    height: 50px;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(150, 180, 210, 0.28),
+            rgba(130, 165, 200, 0.50),
+            rgba(150, 180, 210, 0.28)
+        );
+
+    border: 2px solid #6b4528;
+
+    clip-path: polygon(
+        5% 0%,
+        95% 0%,
+        63% 40%,
+        56% 47%,
+        56% 53%,
+        63% 60%,
+        95% 100%,
+        5% 100%,
+        37% 60%,
+        44% 53%,
+        44% 47%,
+        37% 40%
+    );
+
+    box-shadow:
+        0 0 5px rgba(36, 52, 95, 0.35),
+        inset 0 0 5px rgba(255, 255, 255, 0.45);
+
+    z-index: 1;
+}
+
+/* Arena */
+.page-countdown::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 7px;
+
+    width: 28px;
+    height: 18px;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        180deg,
+        #f7d36b,
+        #efa501,
+        #ec6608
+    );
+
+    clip-path: polygon(
+        15% 0%,
+        85% 0%,
+        100% 100%,
+        0% 100%
+    );
+
+    filter:
+        drop-shadow(
+            0 1px 2px rgba(180, 100, 0, 0.35)
+        );
+
+    z-index: 2;
+
+    animation: sand-level 4s linear infinite;
+}
+
+/* Número */
 #page-countdown-value {
     line-height: 1;
+
+    position: relative;
+
+    z-index: 10;
+
+    color: #111111;
+
+    text-shadow:
+        0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Arena que va bajando */
+@keyframes sand-level {
+
+    0% {
+        height: 18px;
+        opacity: 1;
+    }
+
+    50% {
+        height: 10px;
+    }
+
+    100% {
+        height: 4px;
+        opacity: 0.85;
+    }
 }
 
 /* ==========================================
