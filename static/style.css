@@ -247,7 +247,7 @@ body::before {
 
     transform: rotate(0deg);
 
-    opacity: 0.25;
+    opacity: 0.4;
 
     pointer-events: none;
     z-index: 1;
@@ -2224,7 +2224,7 @@ pre {
     left: 50%;
     transform: translateX(-50%);
     bottom: -70px;
-    width: 600px;
+    width: 650px;
     height: auto;
     display: block;
     padding-top: 100px;
@@ -2234,7 +2234,7 @@ pre {
     left: 50%;
     transform: translateX(-50%);
     bottom: 0px;
-    width: 450px;
+    width: 500px;
     height: auto;
     display: block;
 }
@@ -2507,21 +2507,7 @@ pre {
         transform: translateX(-10px);
     }
 }
-/* MARCA DE AGUA */
 
-.marca-agua {
-    position: fixed;
-    right: 24px;
-    top: 58%;
-
-    width: 120px;
-    height: auto;
-
-    opacity: 0.18;
-
-    pointer-events: none;
-    z-index: 3;
-}
 
 /* ==========================================
    RELOJ DE CUENTA REGRESIVA
