@@ -257,7 +257,7 @@ function setupImageSelection() {
 // CONFIGURACIÓN DE GRILLA
 // ==========================================
 
-const IMAGES_PER_PAGE = 12;
+const IMAGES_PER_PAGE = 18;
 
 const imageGrid =
     document.getElementById(
@@ -566,6 +566,7 @@ analysisVideo.addEventListener(
 
 function openAnalysisModal() {
     analysisModal.hidden = false;
+    document.querySelector("footer").style.visibility = "hidden";
     modalProcessing.hidden = false;
     modalResult.hidden = true;
 
@@ -734,6 +735,7 @@ function showModalResult(data) {
 function closeModal() {
 
     analysisModal.hidden = true;
+    document.querySelector("footer").style.visibility = "visible";
 
     document.body.style.overflow = "";
 

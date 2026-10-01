@@ -648,7 +648,7 @@ body::before {
 .container,
 .footer {
     position: relative;
-    z-index: 2;
+    z-index: 10;
 }
 
 
@@ -805,7 +805,7 @@ body::before {
 
 .container {
     width: min(
-        1585px,
+        1370px,
         calc(100% - 10px)
     );
 
@@ -1389,15 +1389,23 @@ button {
 
 #analyze-button,
 #goback-button {
-     background:
+    background:
         linear-gradient(
             135deg,
-            #4758a4 0%,
-            #6d5092 50%,
-            #a54281 100%
+            #0b3042 0%,
+            #4758a4 25%,
+            #a54281 50%,
+            #a54281 65%,
+            #017166 82%,
+            #0b3042 100%
         );
 
+    background-size: 250% 250%;
+
+    animation: button-color-flow 3s ease-in-out infinite;
+
     color: white;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1426,6 +1434,21 @@ button {
 }
 
 
+@keyframes button-color-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
 #analyze-button:hover,
 #goback-button:hover {
     transform: translateY(-2px);
@@ -1445,8 +1468,9 @@ button {
     transform: none;
 
     box-shadow: none;
-}
 
+    animation: none;
+}
 
 /* ==========================================
    LOADING
@@ -1811,7 +1835,7 @@ pre {
 
     inset: 0;
 
-    z-index: 9999;
+    z-index: 99999;
 
     display: flex;
 
@@ -1851,7 +1875,7 @@ pre {
 .analysis-modal-content {
     position: relative;
 
-    z-index: 1;
+    z-index: 100;
 
     width: min(
         1250px,
@@ -2493,7 +2517,7 @@ pre {
 /* MANITA IZQUIERDA */
 
 .entry-hand-left {
-    right: calc(64% + 5px);
+    right: calc(66% + 5px);
 
     animation: hand-point-left 1.2s ease-in-out infinite;
 }
@@ -2502,7 +2526,7 @@ pre {
 /* MANITA DERECHA */
 
 .entry-hand-right {
-    left: calc(64% + 5px);
+    left: calc(66% + 5px);
 
     animation: hand-point-right 1.2s ease-in-out infinite;
 }
@@ -2688,12 +2712,12 @@ pre {
 
 /* ==========================================
    TIMER DEL RESULTADO DE LA MODAL
+   RELOJ DE ARENA
    ========================================== */
 
 .analysis-modal-content {
     position: relative;
 }
-
 
 .modal-countdown {
     position: absolute;
@@ -2708,23 +2732,144 @@ pre {
     align-items: center;
     justify-content: center;
 
-    background: rgba(0, 0, 0, 0.75);
+    color: #111111;
 
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-
-    color: white;
-
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
 
     z-index: 100;
-    
+
     box-sizing: border-box;
+
+    background: transparent;
+
+    border: none;
+
+    overflow: visible;
 }
 
 
+/* Vidrio del reloj de arena */
+.modal-countdown::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 5px;
+
+    width: 43px;
+    height: 50px;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(150, 180, 210, 0.28),
+            rgba(130, 165, 200, 0.50),
+            rgba(150, 180, 210, 0.28)
+        );
+
+    border: 2px solid #6b4528;
+
+    clip-path: polygon(
+        5% 0%,
+        95% 0%,
+        63% 40%,
+        56% 47%,
+        56% 53%,
+        63% 60%,
+        95% 100%,
+        5% 100%,
+        37% 60%,
+        44% 53%,
+        44% 47%,
+        37% 40%
+    );
+
+    box-shadow:
+        0 0 5px rgba(36, 52, 95, 0.35),
+        inset 0 0 5px rgba(255, 255, 255, 0.45);
+
+    z-index: 1;
+}
+
+
+/* Arena */
+.modal-countdown::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 7px;
+
+    width: 28px;
+    height: 18px;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        180deg,
+        #f7d36b,
+        #efa501,
+        #ec6608
+    );
+
+    clip-path: polygon(
+        15% 0%,
+        85% 0%,
+        100% 100%,
+        0% 100%
+    );
+
+    filter:
+        drop-shadow(
+            0 1px 2px rgba(180, 100, 0, 0.35)
+        );
+
+    z-index: 2;
+
+    animation: modal-sand-level 4s linear infinite;
+}
+
+
+/* Número */
 #modal-countdown-value {
     line-height: 1;
+
+    position: relative;
+
+    z-index: 10;
+
+    color: #111111;
+
+    text-shadow:
+        0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
+
+/* Arena que va bajando */
+@keyframes modal-sand-level {
+
+    0% {
+        height: 18px;
+        opacity: 1;
+    }
+
+    50% {
+        height: 10px;
+    }
+
+    100% {
+        height: 4px;
+        opacity: 0.85;
+    }
+}
+/* ==========================================
+   OCULTAR PROMPT
+   ========================================== */
+#prompt {
+    display: none;
+}
