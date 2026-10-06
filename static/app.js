@@ -88,6 +88,11 @@ const analysisModal =
         "analysis-modal"
     );
 
+const analysisModalContent =
+    document.querySelector(
+        ".analysis-modal-content"
+    );
+
 
 const modalProcessing =
     document.getElementById(
@@ -182,7 +187,7 @@ const modalCountdownValue =
         "modal-countdown-value"
     );
 
-let modalCountdownSeconds = 25;
+let modalCountdownSeconds = 60;
 
 let modalCountdownInterval = null;
 
@@ -734,6 +739,16 @@ function showModalResult(data) {
 
 function closeModal() {
 
+    // Detener timer de la modal
+    if (modalCountdownInterval) {
+
+        clearInterval(
+            modalCountdownInterval
+        );
+
+        modalCountdownInterval = null;
+    }
+
     analysisModal.hidden = true;
     document.querySelector("footer").style.visibility = "visible";
 
@@ -1159,7 +1174,7 @@ let pageCountdownInterval = null;
 
 function startPageCountdown() {
 
-    // Reiniciar siempre a 25 segundos
+    // Reiniciar siempre a 60 segundos
     pageCountdownSeconds = 60;
 
     pageCountdownValue.textContent =
