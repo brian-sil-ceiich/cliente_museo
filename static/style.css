@@ -1882,8 +1882,8 @@ pre {
         95vw
     );
 
-    /* BAMS Comentar si se quiere video en Horizontal */
-    width: 500px;
+    /* BAMS Descomentar si se quiere video en Vertical */
+    /* width: 500px; */
 
     max-height: 90vh;
 
@@ -1978,8 +1978,8 @@ pre {
 
     width: 100%;
 
-    /*BAMS Poner esto max-height: 500px; si se quiere video en horizontan*/
-    height: 700px;
+    /*BAMS Poner esto max-height: 500px; si se quiere video en vertical*/
+    height: 500px;
 
     aspect-ratio: 16 / 9;
 
