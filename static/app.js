@@ -718,7 +718,7 @@ function showModalResult(data) {
     // ======================================
 
     feedbackForm.hidden = false;
-    analysisModalContent.style.width = "1250px";
+    analysisModalContent.style.width = "1950px";
     /// BAMS descomentar si se quiere video en Vertical
     // document.getElementsByClassName('analysis-modal-content')[0].style.width = "1950px";
 
