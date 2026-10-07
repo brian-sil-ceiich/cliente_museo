@@ -370,6 +370,11 @@ body::before {
     transform: rotate(-20deg);
 }
 
+input[type="radio"] {
+  transform: scale(3);
+  margin-right: 10px;
+}
+
 @keyframes pixelDisintegrate {
 
     0% {
@@ -2492,7 +2497,7 @@ pre {
 }
 
 .feedback-group label {
-    margin-bottom: 0px;
+    margin-bottom: 20px;
 }
 
 /* ==========================================
