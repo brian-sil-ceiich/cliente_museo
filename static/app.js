@@ -171,7 +171,7 @@ let analysisFinished = false;
 let analysisData = null;
 let minimumTimeFinished = false;
 let analysisStartTime = null;
-const MINIMUM_ANALYSIS_TIME = 60000;
+const MINIMUM_ANALYSIS_TIME = 72000;
 
 // ==========================================
 // TIMER DEL RESULTADO DE LA MODAL
