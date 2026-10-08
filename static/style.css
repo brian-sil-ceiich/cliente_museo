@@ -1964,7 +1964,8 @@ pre {
    ========================================== */
 
 .modal-video-container {
-    width: 100%;
+    /* width: 1440px;
+    height: 808px; */
 
     overflow: hidden;
 
@@ -1984,7 +1985,6 @@ pre {
     width: 100%;
 
     /*BAMS Poner esto max-height: 500px; si se quiere video en vertical*/
-    height: 500px;
 
     aspect-ratio: 16 / 9;
 
