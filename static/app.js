@@ -171,7 +171,7 @@ let analysisFinished = false;
 let analysisData = null;
 let minimumTimeFinished = false;
 let analysisStartTime = null;
-const MINIMUM_ANALYSIS_TIME = 50000;
+const MINIMUM_ANALYSIS_TIME = 60000;
 
 // ==========================================
 // TIMER DEL RESULTADO DE LA MODAL
@@ -760,6 +760,30 @@ function closeModal() {
     // window.location.replace("http://132.248.246.161/");
 
 }
+// ==========================================
+// CERRAR MODAL
+// ==========================================
+
+function closeModalAnalizador() {
+
+    // Detener timer de la modal
+    if (modalCountdownInterval) {
+
+        clearInterval(
+            modalCountdownInterval
+        );
+
+        modalCountdownInterval = null;
+    }
+
+    analysisModal.hidden = true;
+    document.querySelector("footer").style.visibility = "visible";
+
+    document.body.style.overflow = "";
+
+    analysisVideo.pause();
+
+}
 
 
 // ==========================================
@@ -926,7 +950,11 @@ async function analyzeImage() {
 
     } catch (error) {
 
-        // closeModal();
+        closeModalAnalizador();
+        
+        // Mostrar el timer
+        pageCountdown.hidden = false;
+        startPageCountdown();
 
         showError(
             error.message

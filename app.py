@@ -99,7 +99,7 @@ def analizador():
 @app.post("/analyze")
 def analyze():
 
-    print("Entra a endpoint")
+    # print("Entra a endpoint")
     data = request.get_json()
 
     start = time.perf_counter()
@@ -171,7 +171,7 @@ def analyze():
             "error": "La imagen no existe."
         }), 404
 
-    print("Antes del Try")
+    # print("Antes del Try")
     try:
 
         with open(
@@ -228,7 +228,8 @@ def analyze():
 
         return jsonify({
             "error":
-                f"No fue posible conectar con la API: {exc}"
+                # f"No fue posible conectar con la API: {exc}"
+                f"No fue posible conectar con la API: Posiblemente fue una intermitencia de red, favor de intentar nuevamente."
         }), 502
     
     except Exception as exc:
@@ -242,19 +243,19 @@ def analyze():
 @app.route("/analyze/feedback", methods=["POST"])
 def analyze_feedback():
 
-    print("Entra a feed de app.py")
+    # print("Entra a feed de app.py")
     id_peticion = request.form.get("id_peticion")
     edad = request.form.get("edad")
     emocion = request.form.get("emocion")
     profesion = request.form.get("profesion")
 
-    print("ID petición:", id_peticion)
-    print("Feedback edad:", edad)
-    print("Feedback emoción:", emocion)
-    print("Feedback profesión:", profesion)
+    # print("ID petición:", id_peticion)
+    # print("Feedback edad:", edad)
+    # print("Feedback emoción:", emocion)
+    # print("Feedback profesión:", profesion)
 
     # Guardar en BD...
-    print("Antes del Try")
+    # print("Antes del Try")
     try:
         response = requests.post(
 
