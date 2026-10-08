@@ -1100,7 +1100,14 @@ feedbackForm.addEventListener(
                 error
             );
 
+            
 
+            closeModalAnalizador();
+            
+            // Mostrar el timer
+            pageCountdown.hidden = false;
+            startPageCountdown();
+            
             showError(
                 error.message
             );

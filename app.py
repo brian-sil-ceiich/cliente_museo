@@ -30,12 +30,12 @@ ALLOWED_EXTENSIONS = {
 
 LLAVA_API_URL = os.getenv(
     "LLAVA_API_URL",
-    "http://132.248.159.187/api/v1/analyze/imagen_llava",
+    "http://192.168.2.207/api/v1/analyze/imagen_llava",
 )
 
 FEEDBACK_API_URL = os.getenv(
     "FEEDBACK_API_URL",
-    "http://132.248.159.187/api/v1/analyze/feedback",
+    "http://192.168.2.207/api/v1/analyze/feedback",
 )
 
 LLAVA_API_KEY = os.getenv(
@@ -285,7 +285,8 @@ def analyze_feedback():
     
             return jsonify({
                 "error":
-                    f"No fue posible conectar con la API: {exc}"
+                    # f"No fue posible conectar con la API: {exc}"
+                f"No fue posible conectar con la API: Posiblemente fue una intermitencia de red, favor de intentar nuevamente."
             }), 502
         
     except Exception as exc:
