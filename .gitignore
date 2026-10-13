@@ -38,3 +38,6 @@ Thumbs.db
 # ==========================================
 
 *.logstatic/videos/explicacion_final.mp4
+
+static/images/
+static/videos/
