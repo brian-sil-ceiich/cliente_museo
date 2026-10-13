@@ -182,10 +182,10 @@ switch (videoActualBack) {
     MINIMUM_ANALYSIS_TIME = 72000;
     break;
   case 1:
-    MINIMUM_ANALYSIS_TIME = 72000;
+    MINIMUM_ANALYSIS_TIME = 8000;
     break;
   case 2:
-    MINIMUM_ANALYSIS_TIME = 72000;
+    MINIMUM_ANALYSIS_TIME = 8000;
     break;
   default:
     // Código si ningún caso coincide
@@ -676,7 +676,7 @@ function formatearTextoResultado(texto){
     // Busca cada campo y captura su contenido hasta el siguiente número.
     const regex = /(\d+)\.\s*(EDAD|EMOCIÓN|PROFESIÓN)\s*-\s*(.*?)(?=\s*\d+\.\s*(?:EDAD|EMOCIÓN|PROFESIÓN)\s*-|$)/gis;
 
-    const resultados = [];
+    let resultados = [];
     let match;
 
     while ((match = regex.exec(texto)) !== null) {
@@ -701,7 +701,25 @@ function formatearTextoResultado(texto){
         console.log(`Parrafo: ${elemento}, Índice: ${indice}`);
     });
 
-    return resultados.join('\n');
+    resultados = resultados.join('\n');
+
+    // Esto es para las conversiones de palabras raras
+    const conversiones = {
+    "lab coat": "bata",
+    "adulte": "adultez",
+    "cuarentena": "cuarentas",
+    "quinceaños": "cincuentas"
+    };
+
+    const regex_palabras = /lab coat|adulte|cuarentena|quinceaños/gi;
+
+    // 3. Reemplazamos en una sola pasada usando una función
+    resultados = resultados.replace(regex_palabras, (coincidencia) => {
+    // Convertimos a minúsculas para que coincida con las llaves del objeto
+    return conversiones[coincidencia.toLowerCase()];
+    });
+
+    return resultados;
 }
 
 
