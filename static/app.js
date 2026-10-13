@@ -171,7 +171,25 @@ let analysisFinished = false;
 let analysisData = null;
 let minimumTimeFinished = false;
 let analysisStartTime = null;
-const MINIMUM_ANALYSIS_TIME = 72000;
+let MINIMUM_ANALYSIS_TIME = 72000;
+
+const videoActualBack = Number(
+        localStorage.getItem("videoActual") || 0
+    );
+
+switch (videoActualBack) {
+  case 0:
+    MINIMUM_ANALYSIS_TIME = 72000;
+    break;
+  case 1:
+    MINIMUM_ANALYSIS_TIME = 72000;
+    break;
+  case 2:
+    MINIMUM_ANALYSIS_TIME = 72000;
+    break;
+  default:
+    // Código si ningún caso coincide
+}
 
 // ==========================================
 // TIMER DEL RESULTADO DE LA MODAL
